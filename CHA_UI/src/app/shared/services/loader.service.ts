@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class LoaderService {
-    isLoaderVisible$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+    private isLoaderVisible$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
     showLoader() {
         this.isLoaderVisible$.next(true);
@@ -11,5 +11,9 @@ export class LoaderService {
 
     hideLoader() {
         this.isLoaderVisible$.next(false);
+    }
+
+    isLoaderVisible(): BehaviorSubject<boolean> {
+        return this.isLoaderVisible$;
     }
 }

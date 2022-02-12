@@ -14,6 +14,6 @@ export class AppComponent implements OnInit {
   constructor(private loaderService: LoaderService) { }
 
   ngOnInit(): void {
-    this.isLoaderVisible$ = this.loaderService.isLoaderVisible$;
+    this.isLoaderVisible$ = this.loaderService.isLoaderVisible();
   }
 }
