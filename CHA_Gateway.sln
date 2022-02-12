@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CHA_Gateway", "CHA_Gateway\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CHA_UI", "CHA_UI\CHA_UI.csproj", "{1F849637-0B10-4316-9FFC-74FB3175707B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CHA_Gateway.Model", "CHA_Gateway.Model\CHA_Gateway.Model.csproj", "{4133468A-CC23-481F-8F57-478A2B4D59A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CHA_Gateway.Model", "CHA_Gateway.Model\CHA_Gateway.Model.csproj", "{4133468A-CC23-481F-8F57-478A2B4D59A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CHA_Gateway.Service", "CHA_Gateway.Service\CHA_Gateway.Service.csproj", "{E6C34A39-DF38-481C-B849-E155C24B4990}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{4133468A-CC23-481F-8F57-478A2B4D59A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4133468A-CC23-481F-8F57-478A2B4D59A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4133468A-CC23-481F-8F57-478A2B4D59A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6C34A39-DF38-481C-B849-E155C24B4990}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6C34A39-DF38-481C-B849-E155C24B4990}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6C34A39-DF38-481C-B849-E155C24B4990}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6C34A39-DF38-481C-B849-E155C24B4990}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
