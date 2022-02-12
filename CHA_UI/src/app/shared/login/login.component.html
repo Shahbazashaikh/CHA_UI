@@ -1,0 +1,43 @@
+<div class="login-container" fxLayout="column" fxFill>
+    <div class="login-form" fxLayout="column" fxLayoutAlign="center center">
+        <form #logInForm="ngForm">
+            <mat-card class="login-mat-card">
+                <mat-card-title class="title-spacing">
+                    <div fxLayout="column">
+                        Sign In with your account
+                    </div>
+                </mat-card-title>
+                <mat-card-content>
+                    <div class="row" fxLayout="column">
+                        <mat-form-field class="full-width" appearance="fill">
+                            <mat-label>UserName</mat-label>
+                            <input matInput type="text" name="userName" required [(ngModel)]="model.userName" />
+                            <mat-error *ngIf="model.userName == ''">
+                                UserName is required
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="row" fxLayout="column">
+                        <mat-form-field class="full-width" appearance="fill">
+                            <mat-label>Password</mat-label>
+                            <input matInput type="password" name="password" required [(ngModel)]="model.password" />
+                            <mat-error *ngIf="model.password == ''">
+                                Password is required
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </mat-card-content>
+                <mat-card-actions class="actions-spacing">
+                    <div fxLayout="column" fxLayoutAlign="none end">
+                        <button mat-raised-button color="primary" type="submit" (click)="onLogInClick()">LogIn</button>
+                    </div>
+                </mat-card-actions>
+                <mat-card-footer class="footer-spacing">
+                    <div fxLayout="column">
+                        &copy;{{currentYear}} All rights reserved by
+                    </div>
+                </mat-card-footer>
+            </mat-card>
+        </form>
+    </div>
+</div>

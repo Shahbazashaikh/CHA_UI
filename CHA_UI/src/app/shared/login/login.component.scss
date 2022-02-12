@@ -1,0 +1,25 @@
+.login-container {
+    height: 100%;
+    width: 100%;
+    background-image: url('../../../assets/images/LogInBgImage.jpg');
+    .login-form {
+        margin-top: 30vh;
+        .login-mat-card {
+            width: 500px;
+            .title-spacing {
+                margin-bottom: 20px;
+            }
+            .actions-spacing {
+                margin-bottom: 0px;
+            }
+            .row {
+                .full-width {
+                    width: 100%;
+                }
+            }
+            .footer-spacing {
+                margin: 0;
+            }
+        }
+    }
+}
