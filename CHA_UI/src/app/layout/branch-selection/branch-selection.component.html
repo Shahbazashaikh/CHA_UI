@@ -1,0 +1,52 @@
+<div class="branch-container" fxLayout="column" fxFill>
+    <div class="branch-form" fxLayout="column" fxLayoutAlign="center center">
+        <form #branchForm="ngForm">
+            <mat-card class="branch-mat-card">
+                <mat-card-title class="title-spacing">
+                    <div fxLayout="column">
+                        Select branch and financial year
+                    </div>
+                </mat-card-title>
+                <mat-card-content>
+                    <div class="row" fxLayout="column">
+                        <mat-form-field class="full-width" appearance="fill">
+                            <mat-label>Branch Name</mat-label>
+                            <mat-select required>
+                                <mat-option *ngFor="let branch of model.branches" [value]="model.selectedBranch">
+                                    {{branch}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="model.selectedBranch == ''">
+                                Branch name is required
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="row" fxLayout="column">
+                        <mat-form-field class="full-width" appearance="fill">
+                            <mat-label>Financial Year</mat-label>
+                            <mat-select required>
+                                <mat-option *ngFor="let financialYear of model.financialYears"
+                                    [value]="model.selectedfinancialYear">
+                                    {{financialYear}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="model.selectedfinancialYear == ''">
+                                Financial year is required
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </mat-card-content>
+                <mat-card-actions class="actions-spacing">
+                    <div fxLayout="column" fxLayoutAlign="none end">
+                        <button mat-raised-button color="primary" type="submit" (click)="onNextClick()">Next</button>
+                    </div>
+                </mat-card-actions>
+                <mat-card-footer class="footer-spacing">
+                    <div fxLayout="column">
+                        &copy;{{currentYear}} All rights reserved by
+                    </div>
+                </mat-card-footer>
+            </mat-card>
+        </form>
+    </div>
+</div>

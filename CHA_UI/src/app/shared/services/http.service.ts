@@ -79,8 +79,7 @@ export class HttpService {
 
     private getHttpHeaders(): HttpHeaders {
         return new HttpHeaders({
-            'Content-Type': 'application/json',
-            'User-Agent': 'CHA_UI'
+            'Content-Type': 'application/json'
         });
     }
 

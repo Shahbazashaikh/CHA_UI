@@ -1,24 +1,39 @@
 import { NgModule } from '@angular/core';
-import { CommonAppModule } from './common.module';
-
-// Component
-import { LogInComponent } from './login/login.component';
-
-// Services
-import { AuthenticationService } from './login/authentication.service';
+import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select'
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     imports: [
-        CommonAppModule
-    ],
-    declarations: [
-        LogInComponent
-    ],
-    providers: [
-        AuthenticationService
+        CommonModule,
+        FlexLayoutModule,
+        FormsModule,
+        HttpClientModule,
+        MatButtonModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatProgressSpinnerModule,
+        MatSelectModule
     ],
     exports: [
-        LogInComponent
+        CommonModule,
+        FlexLayoutModule,
+        FormsModule,
+        HttpClientModule,
+        MatButtonModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatProgressSpinnerModule,
+        MatSelectModule
     ]
 })
 export class SharedModule { }

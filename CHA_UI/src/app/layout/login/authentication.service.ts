@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpService } from '../services/http.service';
+import { HttpService } from '../../shared/services/http.service';
 import { ResponseModel } from '../../models';
 import { AuthenticationModel } from './authentication.model';
 
