@@ -348,3 +348,23 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+# CHA_Gateway
+/CHA_Gateway/bin/**
+/CHA_Gateway/obj/**
+/CHA_Gateway/wwwroot/**
+
+# CHA_Gateway
+/CHA_Gateway.Service/bin/**
+/CHA_Gateway.Service/obj/**
+
+# CHA_Gateway.Model
+/CHA_Gateway.Model/bin/**
+/CHA_Gateway.Model/obj/**
+
+# CHA_UI
+/CHA_UI/Properties/**
+/CHA_UI/node_modules/**
+/CHA_UI/package-lock.json
+/CHA_UI/.gitignore
+/CHA_UI/dist/**

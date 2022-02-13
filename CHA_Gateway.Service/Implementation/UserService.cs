@@ -30,7 +30,7 @@ namespace CHA_Gateway.Service
                 string authenicateUserUrl = _appSettings.CHA_API + "User/AuthenticateUser";
                 string result = await _httpService.SendRequestAsync(authenticationRequest, authenicateUserUrl);
                 response.Data = !string.IsNullOrEmpty(result) ? result : "";
-                response.IsSuccessful = string.IsNullOrEmpty(result);
+                response.IsSuccessful = !string.IsNullOrEmpty(result);
                 return response;
             }
             catch (Exception ex)

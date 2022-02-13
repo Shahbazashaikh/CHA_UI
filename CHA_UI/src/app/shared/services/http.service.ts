@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
+import { Observable, Subscriber } from 'rxjs';
 import { LoaderService } from './loader.service';
 
 @Injectable()
@@ -9,41 +9,91 @@ export class HttpService {
     constructor(private http: HttpClient,
         private loaderService: LoaderService) { }
 
-    get<T>(url: string, showLoader: boolean): Observable<T> {
+    get<T>(url: string, data?: any, showLoader: boolean = true): Observable<T> {
         return new Observable(observer => {
-            if (showLoader) {
-                this.loaderService.showLoader();
-            }
-            this.http.get<T>(url, { headers: this.getHttpHeaders(), responseType: 'json' })
-                .subscribe((response: T) => {
-                    observer.next(response);
-                    this.loaderService.hideLoader();
-                }, (error) => {
-                    observer.error(error);
-                    this.loaderService.hideLoader();
+            this.showLoader(showLoader);
+            this.http.get<T>(url, { headers: this.getHttpHeaders(), params: this.getHttpParams(data), responseType: 'json' })
+                .subscribe({
+                    next: (value) => this.handleNextEventOfSubscription<T>(observer, value),
+                    error: (error) => this.handleErrorEventOfSubscription<T>(observer, error),
+                    complete: () => this.handleCompleteEventOfSubscription<T>(observer)
                 });
         });
     }
 
-    post<T>(url: string, body: any, showLoader: boolean): Observable<T> {
+    post<T>(url: string, body: any, showLoader: boolean = true): Observable<T> {
         return new Observable(observer => {
-            if (showLoader) {
-                this.loaderService.showLoader();
-            }
+            this.showLoader(showLoader);
             this.http.post<T>(url, body, { headers: this.getHttpHeaders(), responseType: 'json' })
-                .subscribe((response: T) => {
-                    observer.next(response);
-                    this.loaderService.hideLoader();
-                }, (error) => {
-                    observer.error(error);
-                    this.loaderService.hideLoader();
+                .subscribe({
+                    next: (value) => this.handleNextEventOfSubscription<T>(observer, value),
+                    error: (error) => this.handleErrorEventOfSubscription<T>(observer, error),
+                    complete: () => this.handleCompleteEventOfSubscription<T>(observer)
                 });
         });
+    }
+
+    put<T>(url: string, body: any, showLoader: boolean = true): Observable<T> {
+        return new Observable(observer => {
+            this.showLoader(showLoader);
+            this.http.put<T>(url, body, { headers: this.getHttpHeaders(), responseType: 'json' })
+                .subscribe({
+                    next: (value) => this.handleNextEventOfSubscription<T>(observer, value),
+                    error: (error) => this.handleErrorEventOfSubscription<T>(observer, error),
+                    complete: () => this.handleCompleteEventOfSubscription<T>(observer)
+                });
+        });
+    }
+
+    delete<T>(url: string, body: any, showLoader: boolean = true): Observable<T> {
+        return new Observable(observer => {
+            this.showLoader(showLoader);
+            this.http.delete<T>(url, { body: body, headers: this.getHttpHeaders(), responseType: 'json' })
+                .subscribe({
+                    next: (value) => this.handleNextEventOfSubscription<T>(observer, value),
+                    error: (error) => this.handleErrorEventOfSubscription<T>(observer, error),
+                    complete: () => this.handleCompleteEventOfSubscription<T>(observer)
+                });
+        });
+    }
+
+    private handleNextEventOfSubscription<T>(observer: Subscriber<T>, value: T): void {
+        observer.next(value);
+    }
+
+    private handleErrorEventOfSubscription<T>(observer: Subscriber<T>, value: T): void {
+        this.loaderService.hideLoader();
+        observer.error(value);
+    }
+
+    private handleCompleteEventOfSubscription<T>(observer: Subscriber<T>): void {
+        this.loaderService.hideLoader();
+        observer.complete();
+    }
+
+    private showLoader(isVisible: boolean) {
+        if (isVisible) {
+            this.loaderService.showLoader();
+        }
     }
 
     private getHttpHeaders(): HttpHeaders {
-        const headers: HttpHeaders = new HttpHeaders();
-        headers.append('Content-Type', 'application/json')
-        return headers;
+        return new HttpHeaders({
+            'Content-Type': 'application/json',
+            'User-Agent': 'CHA_UI'
+        });
+    }
+
+    private getHttpParams(data: any): HttpParams {
+        const httpParams: HttpParams = new HttpParams();
+        if (data) {
+            const keys = Object.keys(data);
+            if (keys && keys.length > 0) {
+                keys.forEach(key => {
+                    httpParams.append(key.toString(), data[key].toString());
+                });
+            }
+        }
+        return httpParams;
     }
 }
