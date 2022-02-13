@@ -26,6 +26,6 @@ export class LogInComponent implements OnInit {
     }
 
     isValid(): boolean {
-        return this.model.userName == '' && this.model.password == '';
+        return this.model.userName != '' && this.model.password != '';
     }
 }

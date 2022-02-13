@@ -55,8 +55,9 @@ namespace CHA_Gateway.Service
         private void AddRequestHeader(HttpRequestMessage requestMessage)
         {
             requestMessage.Headers.Add("Accept", "application/json");
-            requestMessage.Headers.Add("User-Agent", "iCRAGateway");
-            requestMessage.Headers.Add("Authorization", _httpContextAccessor.HttpContext.Request.Headers["Authorization"].ToString());
+            requestMessage.Headers.Add("User-Agent", "CHAGateway");
+        
+           // requestMessage.Headers.Add("Authorization", _httpContextAccessor.HttpContext.Request.Headers["Authorization"].ToString());
         }
     }
 }

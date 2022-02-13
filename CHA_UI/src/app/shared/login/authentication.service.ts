@@ -10,7 +10,7 @@ export class AuthenticationService {
 
     authenticateUser(model: AuthenticationModel): Observable<string> {
         return new Observable(observer => {
-            this.http.post<string>('/Authentication/AuthenticateUser', model, true).subscribe(response => {
+            this.http.post<string>('/api/Authentication/AuthenticateUser', model, true).subscribe(response => {
                 observer.next(response);
             }, (error) => {
                 console.log(error);
