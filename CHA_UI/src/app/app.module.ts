@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 // Services
 import { LoaderService } from './shared/services/loader.service';
 import { HttpService } from './shared/services/http.service';
+import { SupplierMasterComponent } from './master/supplier-master/supplier-master.component';
+import { ConsigneeMasterComponent } from './master/consignee-master/consignee-master.component';
 
 @NgModule({
   imports: [
@@ -17,7 +19,9 @@ import { HttpService } from './shared/services/http.service';
     SharedModule
   ],
   declarations: [
-    AppComponent
+    AppComponent,
+    SupplierMasterComponent,
+    ConsigneeMasterComponent
   ],
   providers: [
     LoaderService,

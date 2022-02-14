@@ -11,8 +11,9 @@
                     <div class="row" fxLayout="column">
                         <mat-form-field class="full-width" appearance="fill">
                             <mat-label>Branch Name</mat-label>
-                            <mat-select required>
-                                <mat-option *ngFor="let branch of model.branches" [value]="model.selectedBranch">
+                            <mat-select required name="branch" [(ngModel)]="model.selectedBranch">
+                                <mat-option *ngFor="let branch of model.branches" 
+                                [value]="branch">
                                     {{branch}}
                                 </mat-option>
                             </mat-select>
@@ -24,9 +25,9 @@
                     <div class="row" fxLayout="column">
                         <mat-form-field class="full-width" appearance="fill">
                             <mat-label>Financial Year</mat-label>
-                            <mat-select required>
+                            <mat-select required name="financialYear" [(ngModel)]="model.selectedfinancialYear">
                                 <mat-option *ngFor="let financialYear of model.financialYears"
-                                    [value]="model.selectedfinancialYear">
+                                    [value]="financialYear">
                                     {{financialYear}}
                                 </mat-option>
                             </mat-select>
