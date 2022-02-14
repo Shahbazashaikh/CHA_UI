@@ -5,6 +5,7 @@ import { LayoutRoutingModule } from './layout-routing.module';
 // Component Declaration
 import { LogInComponent } from './login/login.component';
 import { BranchSelectionComponent } from './branch-selection/branch-selection.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 //Service Declaration
 import { AuthenticationService } from './login/authentication.service';
@@ -16,6 +17,7 @@ import { AuthenticationService } from './login/authentication.service';
     ],
     declarations: [
         BranchSelectionComponent,
+        DashboardComponent,
         LogInComponent
     ],
     providers: [
