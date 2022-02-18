@@ -3,12 +3,8 @@ import { SharedModule } from '../shared/shared.module';
 import { LayoutRoutingModule } from './layout-routing.module';
 
 // Component Declaration
-import { LogInComponent } from './login/login.component';
-import { BranchSelectionComponent } from './branch-selection/branch-selection.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-
-//Service Declaration
-import { AuthenticationService } from './login/authentication.service';
+import { LayoutComponent } from './layout.component';
 
 @NgModule({
     imports: [
@@ -16,12 +12,9 @@ import { AuthenticationService } from './login/authentication.service';
         SharedModule
     ],
     declarations: [
-        BranchSelectionComponent,
         DashboardComponent,
-        LogInComponent
+        LayoutComponent
     ],
-    providers: [
-        AuthenticationService
-    ]
+    providers: []
 })
 export class LayoutModule { }
