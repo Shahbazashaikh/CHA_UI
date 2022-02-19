@@ -6,7 +6,6 @@ import { ConsigneeMasterComponent} from './consignee-master/consignee-master.com
 
 @NgModule({
     imports: [
-        ConsigneeMasterComponent,
         SharedModule
     ],
     declarations: [

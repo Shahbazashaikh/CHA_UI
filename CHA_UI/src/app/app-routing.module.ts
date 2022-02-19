@@ -4,7 +4,6 @@ import { LogInComponent } from './shared/login/login.component';
 import { BranchSelectionComponent } from './shared/branch-selection/branch-selection.component';
 import { LayoutComponent } from './shared/layout/layout.component';
 import { AuthGuardService } from './shared/services';
-import { ConsigneeMasterComponent } from './master/consignee-master/consignee-master.component';
 
 const routes: Routes = [
   {

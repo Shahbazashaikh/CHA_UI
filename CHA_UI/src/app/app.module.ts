@@ -10,7 +10,6 @@ import { LogInComponent } from './shared/login/login.component';
 import { BranchSelectionComponent } from './shared/branch-selection/branch-selection.component';
 import { LayoutComponent } from './shared/layout/layout.component';
 import { NavigationComponent } from './shared/navigation/navigation.component';
-import { ConsigneeMasterComponent } from './master/consignee-master/consignee-master.component';
 
 //Services
 import {
@@ -33,8 +32,7 @@ import {
     BranchSelectionComponent,
     LogInComponent,
     LayoutComponent,
-    NavigationComponent,
-    ConsigneeMasterComponent
+    NavigationComponent
   ],
   providers: [
     AuthGuardService,
