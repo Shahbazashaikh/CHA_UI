@@ -1,6 +1,7 @@
 export interface MenuModel {
     menuName: string;
     menuPath: string;
+    menuIcon: string;
     subMenus?: SubMenuModel[];
 }
 

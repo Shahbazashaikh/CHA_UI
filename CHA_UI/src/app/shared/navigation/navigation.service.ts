@@ -11,11 +11,18 @@ export class NavigationService {
     getNavigationMenus(userId: number): Observable<MenuModel[]> {
         return new Observable(observer => {
             const menus: MenuModel[] = [];
-            menus.push({ menuName: 'Master', menuPath: '', subMenus: [{ subMenuName: 'Client', subMenuPath: '{outlets: {child: ["client"]}}' }] });
-            menus.push({ menuName: 'Master', menuPath: '', subMenus: [{ subMenuName: 'Supplier', subMenuPath: '{outlets: {child: ["supplier"]}}' }] });
-            menus.push({ menuName: 'Master', menuPath: '', subMenus: [{ subMenuName: 'Consignee', subMenuPath: '{outlets: {child: ["consignee"]}}' }] });
-            menus.push({ menuName: 'Import', menuPath: '{outlets: {child: ["import"]}}' });
-            menus.push({ menuName: 'Export', menuPath: '{outlets: {child: ["export"]}}' });
+            menus.push({
+                menuName: 'Master',
+                menuPath: '',
+                menuIcon: 'home',
+                subMenus: [
+                    { subMenuName: 'Client', subMenuPath: '/master/client' },
+                    { subMenuName: 'Supplier', subMenuPath: '/master/supplier' },
+                    { subMenuName: 'Consignee', subMenuPath: '/master/consignee' }
+                ]
+            });
+            menus.push({ menuName: 'Import', menuIcon: 'system_update_alt', menuPath: '/import' });
+            menus.push({ menuName: 'Export', menuIcon: 'launch', menuPath: '/export' });
             observer.next(menus);
         });
     }
