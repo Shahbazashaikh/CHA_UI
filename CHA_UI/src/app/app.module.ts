@@ -4,13 +4,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
-import { LogInComponent } from './login/login/login.component';
-import { BranchSelectionComponent } from './login/branch-selection/branch-selection.component';
-import{ConsigneeMasterComponent} from './master/consignee-master/consignee-master.component';
-// Services
+
+//Component
+import { LogInComponent } from './shared/login/login.component';
+import { BranchSelectionComponent } from './shared/branch-selection/branch-selection.component';
+import { LayoutComponent } from './shared/layout/layout.component';
+import { NavigationComponent } from './shared/navigation/navigation.component';
+import { ConsigneeMasterComponent } from './master/consignee-master/consignee-master.component';
+
+//Services
 import {
   AuthGuardService,
   CookieService,
+  DataStorage,
   HttpService,
   LoaderService
 } from './shared/services';
@@ -24,13 +30,16 @@ import {
   ],
   declarations: [
     AppComponent,
-    LogInComponent,
     BranchSelectionComponent,
+    LogInComponent,
+    LayoutComponent,
+    NavigationComponent,
     ConsigneeMasterComponent
   ],
   providers: [
     AuthGuardService,
     CookieService,
+    DataStorage,
     HttpService,
     LoaderService
   ],

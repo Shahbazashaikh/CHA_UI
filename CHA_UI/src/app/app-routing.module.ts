@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LogInComponent } from './shared/login/login.component';
+import { BranchSelectionComponent } from './shared/branch-selection/branch-selection.component';
+import { LayoutComponent } from './shared/layout/layout.component';
 import { AuthGuardService } from './shared/services';
-import { LogInComponent } from './login/login/login.component';
-import { BranchSelectionComponent } from './login/branch-selection/branch-selection.component';
-import {ConsigneeMasterComponent} from './master/consignee-master/consignee-master.component';
+import { ConsigneeMasterComponent } from './master/consignee-master/consignee-master.component';
 
 const routes: Routes = [
   {
@@ -20,17 +21,17 @@ const routes: Routes = [
     component: BranchSelectionComponent
   },
   {
-    path: 'Consignee-selection',
-    component: ConsigneeMasterComponent
+    path: 'dashboard',
+    component: LayoutComponent
   },
   {
-    path: 'dashboard',
-    loadChildren: () => import('./layout/layout.module').then(m => m.LayoutModule)
+    path: 'consignee',
+    component: ConsigneeMasterComponent
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

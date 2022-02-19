@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BranchSelectionModel } from './branch-selection.model';
+import { LoaderService } from '../services';
 
 @Component({
     selector: 'app-branch-selection',
@@ -11,7 +12,8 @@ export class BranchSelectionComponent implements OnInit {
     model: BranchSelectionModel = new BranchSelectionModel();
     currentYear: number = 0;
 
-    constructor(private router: Router) { }
+    constructor(private router: Router,
+        private loaderService: LoaderService) { }
 
     ngOnInit(): void {
         this.currentYear = new Date().getFullYear();
@@ -29,6 +31,7 @@ export class BranchSelectionComponent implements OnInit {
     onNextClick() {
         if (!this.isValid())
             return;
+        this.loaderService.showMenu();
         this.router.navigateByUrl('dashboard');
     }
 
