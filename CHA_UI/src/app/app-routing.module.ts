@@ -24,7 +24,7 @@ const routes: Routes = [
     component: LayoutComponent
   },
   {
-    path: 'master',
+    path: 'master/consignee',
     loadChildren: () => import('./master/master.module').then(m => m.MasterModule)
   }
 ];

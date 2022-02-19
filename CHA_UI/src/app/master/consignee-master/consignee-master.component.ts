@@ -10,6 +10,6 @@ export class ConsigneeMasterComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log('From Consignee component');
   }
-
 }

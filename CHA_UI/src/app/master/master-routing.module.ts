@@ -5,6 +5,11 @@ import { ConsigneeMasterComponent } from './consignee-master/consignee-master.co
 
 const routes: Routes = [
     {
+        path: '',
+        redirectTo: 'consignee',
+        pathMatch: 'full '
+    },
+    {
         path: 'supplier',
         component: ConsigneeMasterComponent
     },

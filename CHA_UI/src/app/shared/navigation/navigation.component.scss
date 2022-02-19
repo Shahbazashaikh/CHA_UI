@@ -15,9 +15,12 @@
       }
     }
     .navigation-sidenav-container {
-      /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
-         causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
-      flex: 1;
+      .sidenav-expanded-width {
+        width: 200px;
+      }
+      .sidenav-collapsed-width {
+        width: 85px;
+      }
       .full-width {
         width: 100%;
       }
