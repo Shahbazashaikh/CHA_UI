@@ -4,7 +4,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
-
+import { LogInComponent } from './login/login/login.component';
+import { BranchSelectionComponent } from './login/branch-selection/branch-selection.component';
+import{ConsigneeMasterComponent} from './master/consignee-master/consignee-master.component';
 // Services
 import {
   AuthGuardService,
@@ -21,7 +23,10 @@ import {
     SharedModule
   ],
   declarations: [
-    AppComponent
+    AppComponent,
+    LogInComponent,
+    BranchSelectionComponent,
+    ConsigneeMasterComponent
   ],
   providers: [
     AuthGuardService,

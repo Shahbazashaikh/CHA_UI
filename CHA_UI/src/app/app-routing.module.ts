@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuardService } from './shared/services';
+import { LogInComponent } from './login/login/login.component';
+import { BranchSelectionComponent } from './login/branch-selection/branch-selection.component';
+import {ConsigneeMasterComponent} from './master/consignee-master/consignee-master.component';
 
 const routes: Routes = [
   {
@@ -10,13 +13,19 @@ const routes: Routes = [
   },
   {
     path: 'sign-in',
-    loadChildren: () => import('./login/login.module').then(m => m.LogInModule),
-    canActivate: [AuthGuardService]
+    component: LogInComponent
+  },
+  {
+    path: 'branch-selection',
+    component: BranchSelectionComponent
+  },
+  {
+    path: 'Consignee-selection',
+    component: ConsigneeMasterComponent
   },
   {
     path: 'dashboard',
-    loadChildren: () => import('./layout/layout.module').then(m => m.LayoutModule),
-    canActivate: [AuthGuardService]
+    loadChildren: () => import('./layout/layout.module').then(m => m.LayoutModule)
   }
 ];
 

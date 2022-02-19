@@ -1,17 +1,50 @@
-<form>
-    <table>
-        <tr>
-            <td>
-                <met-label>
-                    Name
-                </met-label>
-                <met-input>
-                    <input matInput>
-                </met-input>
-                </mat-form-feild>
-            </td>
-        </tr>
-        
-    </table>
-  
-</form>
+<div  fxLayout="column">
+  <div fxLayout="row" fxLayoutGap="20" class="textbox-margin">
+   <mat-form-field appearance="fill">
+    <mat-label>Name </mat-label>
+    <input matInput>
+  </mat-form-field>
+  <mat-form-field  appearance="fill">
+    <mat-label>Branch Slno</mat-label>
+    <input matInput>
+  </mat-form-field>
+</div>
+<div fxLayout="row" fxLayoutGap="20" class="textbox-margin">
+  <mat-form-field  appearance="fill">
+    <mat-label>Address 1</mat-label>
+    <input matInput>
+  </mat-form-field>
+  <mat-form-field  appearance="fill">
+    <mat-label>Address 2</mat-label>
+    <input matInput>
+  </mat-form-field>
+</div>
+  <div fxLayout="row" fxLayoutGap="20" class="textbox-margin">
+    <mat-form-field  appearance="fill">
+      <mat-label>Address 3</mat-label>
+      <input matInput>
+    </mat-form-field>
+    <mat-form-field  appearance="fill">
+      <mat-label>Country Name</mat-label>
+      <input matInput>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutGap="20" class="textbox-margin">
+    <mat-form-field  appearance="fill">
+      <mat-label>Country Code</mat-label>
+      <input matInput>
+    </mat-form-field>
+    <mat-form-field  appearance="fill">
+      <mat-label>Pin Code</mat-label>
+      <input matInput>
+    </mat-form-field>
+  </div>
+  <mat-form-field class="textbox-margin" appearance="fill">
+    <mat-label>Remark</mat-label>
+    <textarea matInput></textarea>
+  </mat-form-field>
+
+  <div>
+    <button mat-button color="primary">Primary</button>
+  </div>
+</div>
