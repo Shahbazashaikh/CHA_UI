@@ -368,3 +368,4 @@ MigrationBackup/
 /CHA_UI/package-lock.json
 /CHA_UI/.gitignore
 /CHA_UI/dist/**
+/CHA_UI/.vscode
