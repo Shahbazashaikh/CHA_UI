@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LogInComponent } from './shared/login/login.component';
+import { BranchSelectionComponent } from './shared/branch-selection/branch-selection.component';
+import { LayoutComponent } from './shared/layout/layout.component';
 import { AuthGuardService } from './shared/services';
 
 const routes: Routes = [
@@ -10,13 +13,18 @@ const routes: Routes = [
   },
   {
     path: 'sign-in',
-    loadChildren: () => import('./login/login.module').then(m => m.LogInModule),
-    canActivate: [AuthGuardService]
+    component: LogInComponent,
+    outlet: 'layout'
+  },
+  {
+    path: 'branch-selection',
+    component: BranchSelectionComponent,
+    outlet: 'layout'
   },
   {
     path: 'dashboard',
-    loadChildren: () => import('./layout/layout.module').then(m => m.LayoutModule),
-    canActivate: [AuthGuardService]
+    component: LayoutComponent,
+    outlet: 'child'
   }
 ];
 

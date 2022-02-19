@@ -1,0 +1,33 @@
+<div class="navigation-container" [class.navigation-is-mobile]="mobileQuery.matches">
+    <mat-toolbar color="primary" class="navigation-toolbar">
+        <button mat-icon-button (click)="isExpanded = !isExpanded">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <h1 class="navigation-app-name">CHA</h1>
+    </mat-toolbar>
+    <mat-sidenav-container class="navigation-sidenav-container" autosize>
+        <mat-sidenav #sidenav mode="side" opened="true" fixedInViewport="true" fixedTopGap="56"
+            (mouseenter)="onMouseenter()" (mouseleave)="onMouseleave()">
+            <mat-nav-list>
+                <ng-container *ngFor="let menu of menus">
+                    <mat-list-item (click)="onMenuClick(menu)" class="parent">
+                        <span class="full-width" *ngIf="isExpanded">{{menu.menuName}}</span>
+                        <mat-icon mat-list-icon>home</mat-icon>
+                        <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}"
+                            *ngIf="menu.subMenus && menu.subMenus.length > 0">
+                            expand_more</mat-icon>
+                    </mat-list-item>
+                    <ng-container *ngIf="isExpanded && menu.subMenus && menu.subMenus.length > 0">
+                        <div class="submenu" [ngClass]="{'expanded' : showSubmenu}"
+                            *ngFor="let subMenu of menu.subMenus">
+                            <a mat-list-item [routerLink]="subMenu.subMenuPath">{{subMenu.subMenuName}}</a>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </mat-nav-list>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <router-outlet name="child"></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

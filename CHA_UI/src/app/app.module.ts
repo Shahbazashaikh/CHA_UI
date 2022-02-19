@@ -5,10 +5,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 
-// Services
+//Component
+import { LogInComponent } from './shared/login/login.component';
+import { BranchSelectionComponent } from './shared/branch-selection/branch-selection.component';
+import { LayoutComponent } from './shared/layout/layout.component';
+import { NavigationComponent } from './shared/navigation/navigation.component';
+
+//Services
 import {
   AuthGuardService,
   CookieService,
+  DataStorage,
   HttpService,
   LoaderService
 } from './shared/services';
@@ -21,11 +28,16 @@ import {
     SharedModule
   ],
   declarations: [
-    AppComponent
+    AppComponent,
+    BranchSelectionComponent,
+    LogInComponent,
+    LayoutComponent,
+    NavigationComponent
   ],
   providers: [
     AuthGuardService,
     CookieService,
+    DataStorage,
     HttpService,
     LoaderService
   ],
