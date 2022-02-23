@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BranchSelectionModel } from './branch-selection.model';
 import { DataStorageService } from '../services';
-import { DataStorageKeys } from '../../models'
+import { DataStorageKeys } from '../../models';
 
 @Component({
     selector: 'app-branch-selection',
