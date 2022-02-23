@@ -36,7 +36,6 @@ export class BranchSelectionComponent implements OnInit {
         this.router.navigateByUrl('dashboard');
     }
 
-
     isValid(): boolean {
         return this.model.selectedBranch != '' && this.model.selectedfinancialYear != '';
     }
