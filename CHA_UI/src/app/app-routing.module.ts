@@ -25,7 +25,11 @@ const routes: Routes = [
   },
   {
     path: 'master/consignee',
-    loadChildren: () => import('./master/master.module').then(m => m.MasterModule)
+    loadChildren: () => import('./consignee-master/consignee-master.module').then(m => m.ConsigneeMasterModule)
+  },
+  {
+    path: 'master/supplier',
+    loadChildren: () => import('./supplier-master/supplier-master.module').then(m => m.SupplierMasterModule)
   }
 ];
 
