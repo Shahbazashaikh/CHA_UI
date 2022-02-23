@@ -1,5 +1,5 @@
-<div class="spinner-style" *ngIf="isLoaderVisible$ | async">
+<div class="spinner-style" *ngIf="isLoaderVisible">
     <mat-spinner class="spinner-alignment" diameter="50"></mat-spinner>
 </div>
-<app-navigation *ngIf="isNavigationVisible$ | async"></app-navigation>
+<app-navigation *ngIf="isNavigationVisible"></app-navigation>
 <router-outlet></router-outlet>

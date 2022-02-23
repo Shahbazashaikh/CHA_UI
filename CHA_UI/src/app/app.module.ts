@@ -15,7 +15,7 @@ import { NavigationComponent } from './shared/navigation/navigation.component';
 import {
   AuthGuardService,
   CookieService,
-  DataStorage,
+  DataStorageService,
   HttpService,
   LoaderService
 } from './shared/services';
@@ -37,7 +37,7 @@ import {
   providers: [
     AuthGuardService,
     CookieService,
-    DataStorage,
+    DataStorageService,
     HttpService,
     LoaderService
   ],

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BranchSelectionModel } from './branch-selection.model';
-import { LoaderService } from '../services';
+import { DataStorageService } from '../services';
+import { DataStorageKeys } from '../../models'
 
 @Component({
     selector: 'app-branch-selection',
@@ -13,7 +14,7 @@ export class BranchSelectionComponent implements OnInit {
     currentYear: number = 0;
 
     constructor(private router: Router,
-        private loaderService: LoaderService) { }
+        private dataStorage: DataStorageService) { }
 
     ngOnInit(): void {
         this.currentYear = new Date().getFullYear();
@@ -31,7 +32,7 @@ export class BranchSelectionComponent implements OnInit {
     onNextClick() {
         if (!this.isValid())
             return;
-        this.loaderService.showMenu();
+        this.dataStorage.add({ key: DataStorageKeys.showMenu, value: true });
         this.router.navigateByUrl('dashboard');
     }
 

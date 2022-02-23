@@ -1,28 +1,17 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { DataStorageService } from './data-storage.service';
+import { DataStorageKeys } from '../../models';
 
 @Injectable()
 export class LoaderService {
-    private isLoaderVisible$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-    private showNavigation$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
+    constructor(private dataStorage: DataStorageService) { }
 
     showLoader() {
-        this.isLoaderVisible$.next(true);
+        this.dataStorage.add({ key: DataStorageKeys.ShowLoader, value: true });
     }
 
     hideLoader() {
-        this.isLoaderVisible$.next(false);
-    }
-
-    isLoaderVisible(): BehaviorSubject<boolean> {
-        return this.isLoaderVisible$;
-    }
-
-    showMenu() {
-        this.showNavigation$.next(true);
-    }
-
-    isNavigationVisible(): BehaviorSubject<boolean> {
-        return this.showNavigation$;
+        this.dataStorage.add({ key: DataStorageKeys.ShowLoader, value: false });
     }
 }
