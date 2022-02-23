@@ -10,6 +10,7 @@ import { LogInComponent } from './shared/login/login.component';
 import { BranchSelectionComponent } from './shared/branch-selection/branch-selection.component';
 import { LayoutComponent } from './shared/layout/layout.component';
 import { NavigationComponent } from './shared/navigation/navigation.component';
+import { DashboardComponent } from './shared/dashboard/dashboard.component';
 
 //Services
 import {
@@ -30,6 +31,7 @@ import {
   declarations: [
     AppComponent,
     BranchSelectionComponent,
+    DashboardComponent,
     LogInComponent,
     LayoutComponent,
     NavigationComponent
