@@ -10,10 +10,10 @@ import { DataStorageModel, DataStorageKeys } from './models'
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'CHA_UI';
-  isLoaderVisible: boolean = false;
-  isNavigationVisible: boolean = false;
   dataStorageLoaderSubscription: Subscription;
   dataStorageNavigationSubscription: Subscription;
+  isLoaderVisible: boolean = false;
+  isNavigationVisible: boolean = false;
 
 
   constructor(private dataStorage: DataStorageService) { }
