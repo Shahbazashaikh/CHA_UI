@@ -32,7 +32,7 @@ export class BranchSelectionComponent implements OnInit {
     onNextClick() {
         if (!this.isValid())
             return;
-        this.dataStorage.add({ key: DataStorageKeys.showMenu, value: true });
+        this.dataStorage.add({ key: DataStorageKeys.ShowMenu, value: true });
         this.router.navigateByUrl('dashboard');
     }
 

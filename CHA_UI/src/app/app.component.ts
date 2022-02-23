@@ -24,7 +24,7 @@ export class AppComponent implements OnInit, OnDestroy {
         this.isLoaderVisible = response.value;
       }
     });
-    this.dataStorageNavigationSubscription = this.dataStorage.subscribe(DataStorageKeys.showMenu, (response: DataStorageModel) => {
+    this.dataStorageNavigationSubscription = this.dataStorage.subscribe(DataStorageKeys.ShowMenu, (response: DataStorageModel) => {
       if (response) {
         this.isNavigationVisible = response.value;
       }
