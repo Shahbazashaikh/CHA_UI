@@ -1,6 +1,5 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { MediaMatcher } from '@angular/cdk/layout';
 import { NavigationService } from './navigation.service';
 import { MenuModel } from '../../models';
 
@@ -11,21 +10,14 @@ import { MenuModel } from '../../models';
     providers: [NavigationService]
 })
 export class NavigationComponent {
-    private _mobileQueryListener: () => void;
-    mobileQuery: MediaQueryList;
     menus: MenuModel[] = [];
-    isExpanded = true;
+    isExpanded: boolean = true;
     showSubmenu: boolean = false;
 
     constructor(private navigationService: NavigationService,
-        private changeDetector: ChangeDetectorRef,
-        private media: MediaMatcher,
         private router: Router) { }
 
     ngOnInit(): void {
-        this.mobileQuery = this.media.matchMedia('(max-width: 600px)');
-        this._mobileQueryListener = () => this.changeDetector.detectChanges();
-        this.mobileQuery.addListener(() => { });
         this.getNavigationMenus(0);
     }
 
@@ -47,10 +39,6 @@ export class NavigationComponent {
         } else {
             this.router.navigateByUrl(menu.menuPath);
         }
-    }
-
-    ngOnDestroy(): void {
-        this.mobileQuery.removeListener(this._mobileQueryListener);
     }
 
     private getNavigationMenus(userId: number) {

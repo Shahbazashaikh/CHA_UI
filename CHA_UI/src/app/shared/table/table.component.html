@@ -1,0 +1,38 @@
+<p-table [columns]="tableModel.columns" [value]="tableModel.data" [sortMode]="tableModel.sortMode"
+    [lazy]="tableModel.lazy" [responsiveLayout]="tableModel.responsiveLayout" [dataKey]="tableModel.dataKey"
+    [selection]="tableModel.selectedData" [selectAll]="tableModel.selectAll" [paginator]="tableModel.paginator"
+    [rows]="tableModel.rows" [totalRecords]="tableModel.totalRecords" [loading]="tableModel.loading"
+    [globalFilterFields]="tableModel.globalFilterFields" [virtualScroll]="tableModel.virtualScroll"
+    [virtualRowHeight]="tableModel.virtualRowHeight" [scrollable]="tableModel.scrollable"
+    [scrollHeight]="tableModel.scrollHeight" [scrollDirection]="tableModel.scrollDirection"
+    [resizableColumns]="tableModel.resizableColumns" [reorderableColumns]="tableModel.reorderableColumns"
+    (onLazyLoad)="onLazyLoading($event)" (selectionChange)="onSelectionChange($event)"
+    (selectAllChange)="onSelectAllChange($event)">
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.sortable == true ? col.field : ''">
+                {{col.header}} <p-sortIcon *ngIf="col.sortable" field="col.field"></p-sortIcon>
+            </th>
+        </tr>
+        <tr *ngIf="tableModel.filter">
+            <ng-template [ngSwitch]="col.filterType">
+                <th *ngIf="tableModel.isSelection">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th *ngSwitchCase="text">
+                    <p-columnFilter type="text" [field]="col.field"></p-columnFilter>
+                </th>
+            </ng-template>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+            <ng-template *ngFor="let col of columns">
+                <td *ngIf="tableModel.isSelection">
+                    <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+                </td>
+                <td>{{rowData[col.field]}}</td>
+            </ng-template>
+        </tr>
+    </ng-template>
+</p-table>
