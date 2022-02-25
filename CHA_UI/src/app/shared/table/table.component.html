@@ -1,16 +1,28 @@
-<p-table [columns]="tableModel.columns" [value]="tableModel.data" [sortMode]="tableModel.sortMode"
-    [lazy]="tableModel.lazy" [responsiveLayout]="tableModel.responsiveLayout" [dataKey]="tableModel.dataKey"
-    [selection]="tableModel.selectedData" [selectAll]="tableModel.selectAll" [paginator]="tableModel.paginator"
-    [rows]="tableModel.rows" [totalRecords]="tableModel.totalRecords" [loading]="tableModel.loading"
-    [globalFilterFields]="tableModel.globalFilterFields" [virtualScroll]="tableModel.virtualScroll"
-    [virtualRowHeight]="tableModel.virtualRowHeight" [scrollable]="tableModel.scrollable"
-    [scrollHeight]="tableModel.scrollHeight" [scrollDirection]="tableModel.scrollDirection"
-    [resizableColumns]="tableModel.resizableColumns" [reorderableColumns]="tableModel.reorderableColumns"
+<p-table #pTable styleClass="p-datatable-gridlines" [columns]="tableModel.columns" [value]="tableModel.data"
+    [sortMode]="tableModel.sortMode" [lazy]="tableModel.lazy" [responsiveLayout]="tableModel.responsiveLayout"
+    [dataKey]="tableModel.dataKey" [selection]="tableModel.selectedData" [selectAll]="tableModel.selectAll"
+    [paginator]="tableModel.paginator" [rows]="tableModel.rows" [totalRecords]="tableModel.totalRecords"
+    [loading]="tableModel.loading" [globalFilterFields]="tableModel.globalFilterFields"
+    [virtualScroll]="tableModel.virtualScroll" [virtualRowHeight]="tableModel.virtualRowHeight"
+    [scrollable]="tableModel.scrollable" [scrollHeight]="tableModel.scrollHeight"
+    [scrollDirection]="tableModel.scrollDirection" [resizableColumns]="tableModel.resizableColumns"
+    [reorderableColumns]="tableModel.reorderableColumns" [exportHeader]="'customExportHeader'"
     (onLazyLoad)="onLazyLoading($event)" (selectionChange)="onSelectionChange($event)"
     (selectAllChange)="onSelectAllChange($event)">
+    <ng-template pTemplate="caption" *ngIf="tableModel.export">
+        <div class="flex">
+            <button type="button" pButton pRipple icon="pi pi-file" (click)="onExportClick('CSV')" class="mr-2"
+                pTooltip="CSV" tooltipPosition="bottom"></button>
+            <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="onExportClick('Excel')"
+                class="p-button-success mr-2" pTooltip="XLS" tooltipPosition="bottom"></button>
+            <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="onExportClick('PDF')"
+                class="p-button-warning mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>
+        </div>
+    </ng-template>
     <ng-template pTemplate="header" let-columns>
         <tr>
-            <th *ngFor="let col of columns" [pSortableColumn]="col.sortable == true ? col.field : ''">
+            <th *ngFor="let col of columns" [pSortableColumn]="col.sortable == true ? col.field : ''" pFrozenColumn
+                [frozen]="col.isFrozen">
                 {{col.header}} <p-sortIcon *ngIf="col.sortable" field="col.field"></p-sortIcon>
             </th>
         </tr>
@@ -31,7 +43,7 @@
                 <td *ngIf="tableModel.isSelection">
                     <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
                 </td>
-                <td>{{rowData[col.field]}}</td>
+                <td pFrozenColumn [frozen]="col.isFrozen">{{rowData[col.field]}}</td>
             </ng-template>
         </tr>
     </ng-template>

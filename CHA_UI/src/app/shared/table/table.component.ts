@@ -11,6 +11,7 @@ export class TableComponent implements OnChanges {
     @Output() onLazyLoad: EventEmitter<any> = new EventEmitter<any>();
     @Output() selectionChange: EventEmitter<any> = new EventEmitter<any>();
     @Output() selectAllChange: EventEmitter<any> = new EventEmitter<any>();
+    @Output() exportClick: EventEmitter<any> = new EventEmitter<any>();
 
     constructor(private changeDetector: ChangeDetectorRef) { }
 
@@ -18,15 +19,19 @@ export class TableComponent implements OnChanges {
         this.changeDetector.markForCheck();
     }
 
-    onLazyLoading(event) {
+    onLazyLoading(event: any) {
         this.onLazyLoad.emit(event);
     }
 
-    onSelectionChange(event) {
+    onSelectionChange(event: any) {
         this.selectionChange.emit(event);
     }
 
-    onSelectAllChange(event) {
+    onSelectAllChange(event: any) {
         this.selectAllChange.emit(event);
+    }
+
+    onExportClick(exportType: string) {
+        this.exportClick.emit(exportType);
     }
 }
