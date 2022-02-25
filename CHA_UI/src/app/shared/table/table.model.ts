@@ -24,6 +24,7 @@ export class TableModel {
     isSelection?: boolean;
     selectAll?: boolean;
     selectedData: any[] = [];
+    emptyMessage?: string;
 }
 
 export interface ColumnDef {

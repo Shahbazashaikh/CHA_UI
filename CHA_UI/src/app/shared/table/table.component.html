@@ -7,8 +7,8 @@
     [scrollable]="tableModel.scrollable" [scrollHeight]="tableModel.scrollHeight"
     [scrollDirection]="tableModel.scrollDirection" [resizableColumns]="tableModel.resizableColumns"
     [reorderableColumns]="tableModel.reorderableColumns" [exportHeader]="'customExportHeader'"
-    (onLazyLoad)="onLazyLoading($event)" (selectionChange)="onSelectionChange($event)"
-    (selectAllChange)="onSelectAllChange($event)">
+    [emptyMessage]="tableModel.emptyMessage" (onLazyLoad)="onLazyLoading($event)"
+    (selectionChange)="onSelectionChange($event)" (selectAllChange)="onSelectAllChange($event)">
     <ng-template pTemplate="caption" *ngIf="tableModel.export">
         <div class="flex">
             <button type="button" pButton pRipple icon="pi pi-file" (click)="onExportClick('CSV')" class="mr-2"
