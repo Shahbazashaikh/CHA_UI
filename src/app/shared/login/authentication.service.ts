@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpService } from '../../shared/services/http.service';
-import { ResponseModel } from '../../models';
+import { environment } from '../../../environments/environment';
 import { AuthenticationModel } from './authentication.model';
 
 @Injectable()
@@ -11,14 +11,10 @@ export class AuthenticationService {
 
     authenticateUser(model: AuthenticationModel): Observable<string> {
         return new Observable(observer => {
-            this.http.post<ResponseModel<string>>('/api/Authentication/AuthenticateUser', model)
+            this.http.post<string>(environment.APIBaseURL + 'User/AuthenticateUser', model)
                 .subscribe({
                     next: (response) => {
-                        if (response && response.isSuccessful) {
-                            observer.next(response.data);
-                        } else {
-                            observer.error(response.errorDetails.errorMessage);
-                        }
+                        observer.next(response);
                     },
                     error: (error) => {
                         console.log(error);
