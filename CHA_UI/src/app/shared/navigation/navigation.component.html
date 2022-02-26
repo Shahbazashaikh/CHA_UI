@@ -12,13 +12,13 @@
             <mat-nav-list>
                 <ng-container *ngFor="let menu of menus">
                     <mat-list-item (click)="onMenuClick(menu)" class="parent">
-                        <span class="full-width" *ngIf="isExpanded || showSubmenu">{{menu.menuName}}</span>
+                        <span class="full-width" *ngIf="isExpanded">{{menu.menuName}}</span>
                         <mat-icon mat-list-icon color="primary">{{menu.menuIcon}}</mat-icon>
                         <mat-icon class="menu-button" color="primary" [ngClass]="{'rotated' : showSubmenu}"
                             *ngIf="menu.subMenus && menu.subMenus.length > 0">
                             expand_more</mat-icon>
                     </mat-list-item>
-                    <ng-container *ngIf="(isExpanded || showSubmenu) && menu.subMenus && menu.subMenus.length > 0">
+                    <ng-container *ngIf="isExpanded && showSubmenu && menu.subMenus && menu.subMenus.length > 0">
                         <div class="submenu" [ngClass]="{'expanded' : showSubmenu}"
                             *ngFor="let subMenu of menu.subMenus">
                             <a mat-list-item [routerLink]="subMenu.subMenuPath">{{subMenu.subMenuName}}</a>
@@ -28,7 +28,9 @@
             </mat-nav-list>
         </mat-sidenav>
         <mat-sidenav-content>
-            <router-outlet></router-outlet>
+            <div class="sidenav-content">
+                <router-outlet></router-outlet>
+            </div>
         </mat-sidenav-content>
     </mat-sidenav-container>
 </div>

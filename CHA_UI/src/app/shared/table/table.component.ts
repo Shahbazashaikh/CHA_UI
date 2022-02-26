@@ -16,7 +16,7 @@ export class TableComponent implements OnChanges {
     constructor(private changeDetector: ChangeDetectorRef) { }
 
     ngOnChanges(changes: SimpleChanges): void {
-        this.changeDetector.markForCheck();
+        console.log(this.tableModel);
     }
 
     onLazyLoading(event: any) {

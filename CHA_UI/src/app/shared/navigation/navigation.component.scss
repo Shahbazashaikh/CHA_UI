@@ -15,6 +15,8 @@
       }
     }
     .navigation-sidenav-container {
+      height: 100%;
+      width: 100%;
       .sidenav-expanded-width {
         width: 200px;
       }
@@ -23,6 +25,9 @@
       }
       .full-width {
         width: 100%;
+      }
+      .sidenav-content {
+        margin: 2%;
       }
       .menu-button {
         transition: 300ms ease-in-out;

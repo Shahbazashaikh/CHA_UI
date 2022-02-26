@@ -21,15 +21,18 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardComponent
+    component: DashboardComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'master/consignee',
-    loadChildren: () => import('./consignee-master/consignee-master.module').then(m => m.ConsigneeMasterModule)
+    loadChildren: () => import('./consignee-master/consignee-master.module').then(m => m.ConsigneeMasterModule),
+    canActivate: [AuthGuardService]
   },
   {
     path: 'master/supplier',
-    loadChildren: () => import('./supplier-master/supplier-master.module').then(m => m.SupplierMasterModule)
+    loadChildren: () => import('./supplier-master/supplier-master.module').then(m => m.SupplierMasterModule),
+    canActivate: [AuthGuardService]
   }
 ];
 

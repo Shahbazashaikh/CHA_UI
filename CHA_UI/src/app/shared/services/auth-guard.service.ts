@@ -8,11 +8,14 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CookieService } from './cookie.service';
+import { DataStorageService } from './data-storage.service';
+import { DataStorageKeys } from '../../models';
 
 @Injectable()
 export class AuthGuardService implements CanActivate {
 
     constructor(private cookieService: CookieService,
+        private dataStorage: DataStorageService,
         private router: Router) { }
 
     canActivate(route: ActivatedRouteSnapshot,
@@ -20,6 +23,8 @@ export class AuthGuardService implements CanActivate {
         if (this.cookieService.getCookie('Test')) {
             this.router.navigateByUrl('dashboard');
         }
+        if (!this.dataStorage.exists(DataStorageKeys.ShowMenu))
+            this.dataStorage.add({ key: DataStorageKeys.ShowMenu, value: true });
         return true;
     }
 }

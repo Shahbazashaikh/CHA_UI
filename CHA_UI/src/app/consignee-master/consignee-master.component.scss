@@ -1,10 +1,13 @@
-
-.textbox-margin{
-  left: 0px;
-  right: -300;
-  margin-right: -300;
-  margin-left: 490px;
-  border-right-width: 300px;
-  margin-right: 450px;
+.consignee-master {
+  .mat-card {
+    .mat-card-title {
+      margin-bottom: 35px;
+    }
+    .mat-card-content {
+      button {
+        width: 150px;
+        height: 50px;
+      }
+    }
+  }
 }
-
