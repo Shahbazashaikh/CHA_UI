@@ -223,3 +223,14 @@ body {
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
 }
+
+.mat-icon {
+  cursor: pointer;
+}
+.mat-icon.mat-red {
+  color: $light-red;
+}
+
+p {
+  font-family: 'Roboto';
+}

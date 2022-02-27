@@ -1,0 +1,76 @@
+<div class="insert-update-consignee" fxLayout="column">
+    <form #consigneeMasterInsertUpdateForm="ngForm">
+        <div fxLayout="row" fxLayoutAlign="space-between start">
+            <h5 mat-dialog-title>{{data.action}} Consignee Master</h5>
+            <mat-icon mat-dialog-close>close</mat-icon>
+        </div>
+        <mat-dialog-content>
+            <div fxLayout="row" fxLayoutGap="30">
+                <mat-form-field appearance="fill" fxFlex="50">
+                    <mat-label>Name</mat-label>
+                    <input matInput type="text" name="name" required [(ngModel)]="data.name" />
+                    <mat-error *ngIf="!consigneeMasterInsertUpdateForm.valid">
+                        Name is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill" fxFlex="50">
+                    <mat-label>Branch No</mat-label>
+                    <input matInput type="text" name="branchNo" [(ngModel)]="data.branchNo" />
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutGap="30">
+                <mat-form-field appearance="fill" fxFlex="50">
+                    <mat-label>Address 1</mat-label>
+                    <input matInput type="text" name="address1" required [(ngModel)]="data.address1" />
+                    <mat-error *ngIf="!consigneeMasterInsertUpdateForm.valid">
+                        Address1 is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill" fxFlex="50">
+                    <mat-label>Address 2</mat-label>
+                    <input matInput type="text" name="address2" [(ngModel)]="data.address2" />
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutGap="30">
+                <mat-form-field appearance="fill" fxFlex="50">
+                    <mat-label>City</mat-label>
+                    <input matInput type="text" name="city" [(ngModel)]="data.city" />
+                </mat-form-field>
+                <mat-form-field appearance="fill" fxFlex="50">
+                    <mat-label>State</mat-label>
+                    <mat-select [(value)]="data.state">
+                        <mat-option *ngFor="let st of data.states" [value]="st">{{st}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutGap="30">
+                <mat-form-field appearance="fill" fxFlex="50">
+                    <mat-label>Country</mat-label>
+                    <mat-select [(value)]="data.country" required>
+                        <mat-option *ngFor="let cntry of data.countries" [value]="cntry">{{cntry}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="fill" fxFlex="50">
+                    <mat-label>CountryCode</mat-label>
+                    <mat-select [(value)]="data.countryCode" required>
+                        <mat-option *ngFor="let cncd of data.countryCodes" [value]="cncd">{{cncd}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutGap="30">
+                <mat-form-field appearance="fill" fxFlex="50">
+                    <mat-label>ZipCode</mat-label>
+                    <input matInput type="text" name="zipCode" [(ngModel)]="data.zipCode" />
+                </mat-form-field>
+                <mat-form-field appearance="fill" fxFlex="50">
+                    <mat-label>Remarks</mat-label>
+                    <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" name="remarks"
+                        [(ngModel)]="data.remarks"></textarea>
+                </mat-form-field>
+            </div>
+        </mat-dialog-content>
+        <mat-dialog-actions align="end">
+            <button type="submit" mat-raised-button color="primary" (click)="onPrimaryButtonClick()">{{data.action}}</button>
+        </mat-dialog-actions>
+    </form>
+</div>

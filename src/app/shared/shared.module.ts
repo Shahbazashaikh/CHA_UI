@@ -13,9 +13,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { TableComponent } from './table/table.component';
+import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
 
 @NgModule({
     imports: [
@@ -33,10 +35,12 @@ import { TableComponent } from './table/table.component';
         MatListModule,
         MatToolbarModule,
         MatIconModule,
+        MatDialogModule,
         TableModule,
         ToastModule
     ],
     declarations: [
+        ConfirmationModalComponent,
         TableComponent
     ],
     exports: [
@@ -54,9 +58,13 @@ import { TableComponent } from './table/table.component';
         MatListModule,
         MatToolbarModule,
         MatIconModule,
+        MatDialogModule,
         TableModule,
         ToastModule,
         TableComponent
+    ],
+    entryComponents: [
+        ConfirmationModalComponent
     ]
 })
 export class SharedModule { }

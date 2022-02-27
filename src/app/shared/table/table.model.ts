@@ -16,7 +16,7 @@ export class TableModel {
     sortMode: string = 'single';
     rowGroupMode: string;
     groupRowsBy: string;
-    responsiveLayout: string = 'stack';
+    responsiveLayout: string = 'scroll';
     resizableColumns: boolean = true;
     export: boolean = true;
     filter: boolean = true;
@@ -25,13 +25,18 @@ export class TableModel {
     selectAll: boolean;
     selectedData: any[] = [];
     emptyMessage: string = 'No Records Found';
+    showCurrentPageReport: boolean = true;
+    currentPageReportTemplate: string = 'Showing {first} to {last} of {totalRecords} entries';
+    rowsPerPageOptions: string[] = ['10', '25', '50'];
 }
 
 export interface ColumnDef {
     field: string;
     header: string;
     sortable: boolean;
-    exportHeader: string;
-    filterType: string;
-    isFrozen: boolean;
+    exportHeader?: string;
+    filterType?: string;
+    isFrozen?: boolean;
+    isEditAllowed?: boolean;
+    isDeleteAllowed?: boolean;
 }

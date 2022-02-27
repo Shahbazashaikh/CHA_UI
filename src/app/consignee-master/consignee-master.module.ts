@@ -4,8 +4,10 @@ import { SharedModule } from '../shared/shared.module';
 
 //Component
 import { ConsigneeMasterComponent } from './consignee-master.component';
+import { InsertUpdateConsigneeComponent } from './insert-update-consignee/insert-update-consignee.component';
 
 //Service
+import { ConsigneeMasterService } from './consignee-master.service';
 
 @NgModule({
     imports: [
@@ -13,10 +15,14 @@ import { ConsigneeMasterComponent } from './consignee-master.component';
         SharedModule
     ],
     declarations: [
-        ConsigneeMasterComponent
+        ConsigneeMasterComponent,
+        InsertUpdateConsigneeComponent
     ],
     providers: [
-
+        ConsigneeMasterService
+    ],
+    entryComponents: [
+        InsertUpdateConsigneeComponent
     ]
 })
 export class ConsigneeMasterModule { }

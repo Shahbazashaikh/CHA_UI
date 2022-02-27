@@ -7,8 +7,10 @@
     [scrollable]="tableModel.scrollable" [scrollHeight]="tableModel.scrollHeight"
     [scrollDirection]="tableModel.scrollDirection" [resizableColumns]="tableModel.resizableColumns"
     [reorderableColumns]="tableModel.reorderableColumns" [exportHeader]="'customExportHeader'"
-    (onLazyLoad)="onLazyLoading($event)" (selectionChange)="onSelectionChange($event)"
-    (selectAllChange)="onSelectAllChange($event)">
+    [showCurrentPageReport]="tableModel.showCurrentPageReport"
+    [currentPageReportTemplate]="tableModel.currentPageReportTemplate"
+    [rowsPerPageOptions]="tableModel.rowsPerPageOptions" (onLazyLoad)="onLazyLoading($event)"
+    (selectionChange)="onSelectionChange($event)" (selectAllChange)="onSelectAllChange($event)">
     <!-- <ng-template pTemplate="caption" *ngIf="tableModel.export">
         <div class="flex">
             <button type="button" pButton pRipple icon="pi pi-file" (click)="onExportClick('CSV')" class="mr-2"
@@ -44,8 +46,22 @@
                 <td *ngIf="tableModel.isSelection">
                     <!-- <p-tableCheckbox [value]="rowData"></p-tableCheckbox> -->
                 </td>
-                <td pFrozenColumn [frozen]="col.isFrozen">{{rowData[col.field]}}</td>
+                <td *ngIf="col.isEditAllowed || col.isDeleteAllowed">
+                    <mat-icon *ngIf="col.isEditAllowed" color="primary" (click)="onRowEditClick(rowData)">edit</mat-icon>
+                    <mat-icon *ngIf="col.isDeleteAllowed" color="red" (click)="onRowDeleteClick(rowData)">delete</mat-icon>
+                </td>
+                <td pFrozenColumn [frozen]="col.isFrozen" *ngIf="!(col.isEditAllowed || col.isDeleteAllowed)">
+                    {{rowData[col.field]}}</td>
             </ng-container>
         </tr>
     </ng-template>
+    <ng-container *ngIf="tableModel.emptyMessage">
+        <ng-template pTemplate="emptymessage" let-columns>
+            <tr>
+                <td [attr.colspan]="columns.length">
+                    {{tableModel.emptyMessage}}
+                </td>
+            </tr>
+        </ng-template>
+    </ng-container>
 </p-table>

@@ -12,11 +12,14 @@ export class TableComponent implements OnChanges {
     @Output() selectionChange: EventEmitter<any> = new EventEmitter<any>();
     @Output() selectAllChange: EventEmitter<any> = new EventEmitter<any>();
     @Output() exportClick: EventEmitter<any> = new EventEmitter<any>();
+    @Output() rowEditClick: EventEmitter<any> = new EventEmitter<any>();
+    @Output() rowDeleteClick: EventEmitter<any> = new EventEmitter<any>();
 
     constructor(private changeDetector: ChangeDetectorRef) { }
 
     ngOnChanges(changes: SimpleChanges): void {
         console.log(this.tableModel);
+        this.changeDetector.markForCheck();
     }
 
     onLazyLoading(event: any) {
@@ -33,5 +36,13 @@ export class TableComponent implements OnChanges {
 
     onExportClick(exportType: string) {
         this.exportClick.emit(exportType);
+    }
+
+    onRowEditClick(rowData: any) {
+        this.rowEditClick.emit(rowData);
+    }
+
+    onRowDeleteClick(rowData: any) {
+        this.rowDeleteClick.emit(rowData);
     }
 }

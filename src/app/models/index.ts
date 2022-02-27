@@ -1,3 +1,4 @@
+export * from './consignee-master-api.model';
 export * from './data-storage.model';
 export * from './data-storage-keys.model';
 export * from './navigation.model';

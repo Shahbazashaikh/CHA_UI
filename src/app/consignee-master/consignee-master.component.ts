@@ -1,6 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { ConsigneeMasterModel } from './consignee-master.model';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ConsigneeMasterModel, InsertUpdateConsigneeModel } from './consignee-master.model';
+import { ConsigneeMasterService } from './consignee-master.service';
+import { InsertUpdateConsigneeComponent } from './insert-update-consignee/insert-update-consignee.component';
+import { ConfirmationModalComponent } from '../shared/confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'app-consignee-master',
@@ -9,28 +12,108 @@ import { ConsigneeMasterModel } from './consignee-master.model';
 })
 export class ConsigneeMasterComponent implements OnInit {
   model: ConsigneeMasterModel = new ConsigneeMasterModel();
-  @ViewChild('consigneeMasterSearchForm') searchForm: NgForm;
 
-  constructor() { }
+  constructor(public dialog: MatDialog,
+    private consigneeService: ConsigneeMasterService) { }
 
   ngOnInit(): void {
-    this.model.gridConfig.columns = [
-      { field: 'name', header: 'Name', exportHeader: 'Name', filterType: 'text', isFrozen: false, sortable: true },
-      { field: 'email', header: 'Email', exportHeader: 'Email', filterType: 'text', isFrozen: false, sortable: true },
-    ];
+    this.initializeGridConfig();
+    this.initializeCountries();
+    this.getConsignees();
   }
 
   onSearchClick() {
-    if (!this.isValid())
-      return;
+    this.getConsignees();
   }
 
   onCancelClick() {
-    this.searchForm.reset();
-    this.searchForm.resetForm(this.searchForm.value);
+    this.model.consigneeName = '';
+    this.model.country = '';
+    this.getConsignees();
   }
 
-  private isValid(): boolean {
-    return this.model.consigneeName != '' && this.model.country != '';
+  onAddNewClick(): void {
+    const insertUpdateModel: InsertUpdateConsigneeModel = new InsertUpdateConsigneeModel();
+    insertUpdateModel.action = 'Add';
+    insertUpdateModel.countries = this.model.countries;
+    const dialogRef = this.dialog.open(InsertUpdateConsigneeComponent, {
+      height: '550px',
+      width: '700px',
+      data: insertUpdateModel
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == 'Successfully Saved') {
+        this.getConsignees();
+      }
+    });
+  }
+
+  onEditRowClick(updateConsignee: InsertUpdateConsigneeModel) {
+    updateConsignee.action = 'Update';
+    updateConsignee.countries = this.model.countries;
+    const dialogRef = this.dialog.open(InsertUpdateConsigneeComponent, {
+      height: '550px',
+      width: '700px',
+      data: updateConsignee
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == 'Successfully Saved') {
+        this.getConsignees();
+      }
+    });
+  }
+
+  onDeleteRowClick(deleteConsignee: InsertUpdateConsigneeModel) {
+    const dialogRef = this.dialog.open(ConfirmationModalComponent, {
+      height: '190px',
+      width: '350px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        //call delte api call with given model.
+      }
+    });
+  }
+
+  private initializeGridConfig(): void {
+    this.model.gridConfig.columns = [
+      { field: 'name', header: 'Consignee', sortable: true },
+      { field: 'branchNo', header: 'Branch No.', sortable: true },
+      { field: 'address1', header: 'Address', sortable: true },
+      { field: 'city', header: 'City', sortable: true },
+      { field: 'state', header: 'State', sortable: true },
+      { field: 'country', header: 'Country', sortable: true },
+      { field: '', header: 'Action', sortable: false, isEditAllowed: true, isDeleteAllowed: true }
+    ];
+    //need to bind this dyanamically
+    //need to check primeng documentation
+    this.model.gridConfig.rows = 10;
+  }
+
+  private initializeCountries(): void {
+    this.model.countries = [
+      "India",
+      "USA",
+      "USB",
+      "RSA",
+      "Canada"
+    ];
+  }
+
+  private getConsignees(): void {
+    this.consigneeService.getConsigneeMaster({
+      companyName: this.model.consigneeName,
+      countryCode: this.model.country
+    }).subscribe((response) => {
+      this.model.gridConfig.data = response;
+      this.model.gridConfig.totalRecords = response.length;
+    }, (error) => {
+      this.model.gridConfig.data = [];
+      this.model.gridConfig.totalRecords = 0;
+      //show toaster message
+    });
   }
 }
