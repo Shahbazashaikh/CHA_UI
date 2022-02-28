@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MessageService } from 'primeng/api';
 import { ConsigneeMasterModel, InsertUpdateConsigneeModel } from './consignee-master.model';
 import { ConsigneeMasterService } from './consignee-master.service';
 import { InsertUpdateConsigneeComponent } from './insert-update-consignee/insert-update-consignee.component';
@@ -14,7 +15,8 @@ export class ConsigneeMasterComponent implements OnInit {
   model: ConsigneeMasterModel = new ConsigneeMasterModel();
 
   constructor(public dialog: MatDialog,
-    private consigneeService: ConsigneeMasterService) { }
+    private consigneeService: ConsigneeMasterService,
+    private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.initializeGridConfig();
@@ -37,17 +39,18 @@ export class ConsigneeMasterComponent implements OnInit {
     insertUpdateModel.action = 'Add';
     insertUpdateModel.countries = this.model.countries;
     const dialogRef = this.dialog.open(InsertUpdateConsigneeComponent, {
-      height: '550px',
+      height: '565px',
       width: '700px',
       data: insertUpdateModel
     });
 
     dialogRef.afterClosed().subscribe((result: string) => {
       if (result == 'Successfully Saved') {
+        this.messageService.add({ severity: 'success', summary: 'Successfully Saved' });
         this.getConsignees();
       }
     }, (error: any) => {
-      //show toaster message
+      this.messageService.add({ severity: 'error', summary: error });
     });
   }
 
@@ -55,37 +58,39 @@ export class ConsigneeMasterComponent implements OnInit {
     updateConsignee.action = 'Update';
     updateConsignee.countries = this.model.countries;
     const dialogRef = this.dialog.open(InsertUpdateConsigneeComponent, {
-      height: '550px',
+      height: '565px',
       width: '700px',
       data: updateConsignee
     });
 
     dialogRef.afterClosed().subscribe((result: boolean) => {
       if (result) {
+        this.messageService.add({ severity: 'success', summary: 'Successfully Updated' });
         this.getConsignees();
       }
     }, (error: any) => {
-      //show toaster message
+      this.messageService.add({ severity: 'error', summary: error });
     });
   }
 
   onDeleteRowClick(deleteConsignee: InsertUpdateConsigneeModel) {
     const dialogRef = this.dialog.open(ConfirmationModalComponent, {
-      height: '190px',
-      width: '350px'
+      height: '205px',
+      width: '395px'
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result: boolean) => {
       if (result) {
         this.consigneeService.deleteConsigneeMaster(deleteConsignee.id)
           .subscribe({
             next: (result: boolean) => {
               if (result) {
+                this.messageService.add({ severity: 'success', summary: 'Successfully Deleted' });
                 this.getConsignees();
               }
             },
             error: (error: any) => {
-              //show toaster message
+              this.messageService.add({ severity: 'error', summary: error });
             }
           })
       }
@@ -127,7 +132,7 @@ export class ConsigneeMasterComponent implements OnInit {
     }, (error) => {
       this.model.gridConfig.data = [];
       this.model.gridConfig.totalRecords = 0;
-      //show toaster message
+      this.messageService.add({ severity: 'error', summary: error });
     });
   }
 }

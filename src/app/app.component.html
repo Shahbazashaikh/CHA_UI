@@ -2,6 +2,7 @@
     <mat-spinner class="spinner-alignment" diameter="50"></mat-spinner>
 </div>
 <app-navigation *ngIf="isNavigationVisible"></app-navigation>
+<p-toast position="bottom-right"></p-toast>
 <ng-container *ngIf="!isNavigationVisible">
     <router-outlet></router-outlet>
 </ng-container>

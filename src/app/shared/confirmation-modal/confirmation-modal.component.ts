@@ -13,4 +13,8 @@ export class ConfirmationModalComponent {
     onConfirmClick() {
         this.dialogRef.close(true);
     }
+
+    onCloseClick() {
+        this.dialogRef.close(false);
+    }
 }

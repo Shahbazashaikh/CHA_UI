@@ -1,7 +1,19 @@
 .confirmation-modal {
+    .confirmation-header {
+        h5 {
+            margin: 0;
+        }
+    }
+    .divider {
+        padding: 15px 0;
+    }
     mat-dialog-content {
         p {
             margin-top: 0;
+            mat-icon {
+                vertical-align: bottom;
+                cursor: default;
+            }
         }
     }
 }

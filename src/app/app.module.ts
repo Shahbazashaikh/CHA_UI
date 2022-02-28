@@ -20,6 +20,7 @@ import {
   HttpService,
   LoaderService
 } from './shared/services';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   imports: [
@@ -41,7 +42,8 @@ import {
     CookieService,
     DataStorageService,
     HttpService,
-    LoaderService
+    LoaderService,
+    MessageService
   ],
   bootstrap: [AppComponent]
 })

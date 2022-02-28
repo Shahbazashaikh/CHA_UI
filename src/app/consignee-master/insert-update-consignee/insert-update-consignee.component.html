@@ -1,8 +1,11 @@
 <div class="insert-update-consignee" fxLayout="column">
-    <form #consigneeMasterInsertUpdateForm="ngForm">
+    <form class="insert-update-form" #consigneeMasterInsertUpdateForm="ngForm">
         <div fxLayout="row" fxLayoutAlign="space-between start">
             <h5 mat-dialog-title>{{data.action}} Consignee Master</h5>
             <mat-icon mat-dialog-close>close</mat-icon>
+        </div>
+        <div class="divider">
+            <mat-divider></mat-divider>
         </div>
         <mat-dialog-content>
             <div fxLayout="row" fxLayoutGap="30">
@@ -68,6 +71,7 @@
                         [(ngModel)]="data.remarks"></textarea>
                 </mat-form-field>
             </div>
+            <mat-divider></mat-divider>
         </mat-dialog-content>
         <mat-dialog-actions align="end">
             <button type="submit" mat-raised-button color="primary" (click)="onPrimaryButtonClick()">{{data.action}}</button>
