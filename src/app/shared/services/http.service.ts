@@ -45,7 +45,7 @@ export class HttpService {
         });
     }
 
-    delete<T>(url: string, body: any, showLoader: boolean = true): Observable<T> {
+    delete<T>(url: string, body?: any, showLoader: boolean = true): Observable<T> {
         return new Observable(observer => {
             this.showLoader(showLoader);
             this.http.delete<T>(url, { body: body, headers: this.getHttpHeaders(), responseType: 'json' })

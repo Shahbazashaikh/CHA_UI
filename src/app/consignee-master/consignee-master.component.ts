@@ -42,10 +42,12 @@ export class ConsigneeMasterComponent implements OnInit {
       data: insertUpdateModel
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result: string) => {
       if (result == 'Successfully Saved') {
         this.getConsignees();
       }
+    }, (error: any) => {
+      //show toaster message
     });
   }
 
@@ -58,10 +60,12 @@ export class ConsigneeMasterComponent implements OnInit {
       data: updateConsignee
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result == 'Successfully Saved') {
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result) {
         this.getConsignees();
       }
+    }, (error: any) => {
+      //show toaster message
     });
   }
 
@@ -73,7 +77,17 @@ export class ConsigneeMasterComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        //call delte api call with given model.
+        this.consigneeService.deleteConsigneeMaster(deleteConsignee.id)
+          .subscribe({
+            next: (result: boolean) => {
+              if (result) {
+                this.getConsignees();
+              }
+            },
+            error: (error: any) => {
+              //show toaster message
+            }
+          })
       }
     });
   }

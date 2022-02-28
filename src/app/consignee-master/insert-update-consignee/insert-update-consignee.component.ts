@@ -23,10 +23,22 @@ export class InsertUpdateConsigneeComponent implements OnInit {
         if (!this.isValid())
             return;
         if (this.data.action == 'Add') {
-            this.consigneeService.insertConsigneeMaster(this.data).subscribe((data: string) => {
-                this.dialogRef.close(data);
-            }, (error: any) => {
-                this.dialogRef.close(error);
+            this.consigneeService.insertConsigneeMaster(this.data).subscribe({
+                next: (response: string) => {
+                    this.dialogRef.close(response);
+                },
+                error: (error: any) => {
+                    this.dialogRef.close(error);
+                }
+            });
+        } else {
+            this.consigneeService.updateConsigneeMaster(this.data).subscribe({
+                next: (response: boolean) => {
+                    this.dialogRef.close(response);
+                },
+                error: (error: any) => {
+                    this.dialogRef.close(error);
+                }
             });
         }
     }

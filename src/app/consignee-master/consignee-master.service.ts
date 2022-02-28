@@ -58,4 +58,48 @@ export class ConsigneeMasterService {
                 });
         });
     }
+
+    updateConsigneeMaster(request: ConsigneeRequestModel): Observable<boolean> {
+        return new Observable(observer => {
+            this.http.put<ResponseModel<boolean>>(environment.APIBaseURL + 'ConsigneeMaster/UpdateConsigneeMaster', request)
+                .subscribe({
+                    next: (response) => {
+                        if (response.isSuccessful)
+                            observer.next(response.data);
+                        else
+                            observer.error(response.error.errorMessage);
+                    },
+                    error: (error: HttpErrorResponse) => {
+                        console.log(error);
+                        if (error.status == 401) {
+                            //token is not valid
+                        } else {
+                            observer.error(error.message);
+                        }
+                    }
+                });
+        });
+    }
+
+    deleteConsigneeMaster(id: number): Observable<boolean> {
+        return new Observable(observer => {
+            this.http.delete<ResponseModel<boolean>>(environment.APIBaseURL + 'ConsigneeMaster/DeleteConsigneeMaster/' + id)
+                .subscribe({
+                    next: (response) => {
+                        if (response.isSuccessful)
+                            observer.next(response.data);
+                        else
+                            observer.error(response.error.errorMessage);
+                    },
+                    error: (error: HttpErrorResponse) => {
+                        console.log(error);
+                        if (error.status == 401) {
+                            //token is not valid
+                        } else {
+                            observer.error(error.message);
+                        }
+                    }
+                });
+        });
+    }
 }
