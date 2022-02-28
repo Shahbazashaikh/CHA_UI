@@ -4,7 +4,9 @@
         <mat-icon mat-dialog-close="false">close</mat-icon>
     </div>
     <mat-dialog-content>
-        <p>Are you sure you want to delete this item ?</p>
+        <p>
+            <mat-icon color="primary">warning</mat-icon> Are you sure you want to delete this item ?
+        </p>
     </mat-dialog-content>
     <mat-dialog-actions align="end">
         <button type="button" mat-raised-button color="primary" (click)="onConfirmClick()">Confirm</button>
