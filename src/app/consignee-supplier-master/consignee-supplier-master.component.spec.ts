@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ConsigneeMasterComponent } from './consignee-master.component';
+import { ConsigneeSupplierMasterComponent } from './consignee-supplier-master.component';
 
 describe('ConsigneeMasterComponent', () => {
-  let component: ConsigneeMasterComponent;
-  let fixture: ComponentFixture<ConsigneeMasterComponent>;
+  let component: ConsigneeSupplierMasterComponent;
+  let fixture: ComponentFixture<ConsigneeSupplierMasterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ConsigneeMasterComponent ]
+      declarations: [ ConsigneeSupplierMasterComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ConsigneeMasterComponent);
+    fixture = TestBed.createComponent(ConsigneeSupplierMasterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

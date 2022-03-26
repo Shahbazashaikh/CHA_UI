@@ -1,14 +1,15 @@
 import { TableModel } from '../shared/table/table.model';
-import { ConsigneeResponseModel } from '../models';
+import { ConsigneeSupplierResponseModel } from '../models';
 
-export class ConsigneeMasterModel {
+export class ConsigneeSupplierMasterModel {
     consigneeName: string;
     country: string;
     countries: string[] = [];
     gridConfig: TableModel = new TableModel();
+    type: string;
 }
 
-export class InsertUpdateConsigneeModel {
+export class InsertUpdateConsigneeSupplierModel {
     id: number;
     name: string;
     branchNo: string;
@@ -25,4 +26,5 @@ export class InsertUpdateConsigneeModel {
     states: string[] = [];
     countries: string[] = [];
     countryCodes: string[] = [];
+    type: string;
 }

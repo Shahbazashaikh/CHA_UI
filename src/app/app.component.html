@@ -3,6 +3,4 @@
 </div>
 <app-navigation *ngIf="isNavigationVisible"></app-navigation>
 <p-toast position="bottom-right"></p-toast>
-<ng-container *ngIf="!isNavigationVisible">
-    <router-outlet></router-outlet>
-</ng-container>
+<router-outlet></router-outlet>

@@ -1,0 +1,29 @@
+<div fxLayout="column" fxLayoutGap="20" class="client-master">
+  <mat-card>
+    <mat-card-title>
+      Client Master
+    </mat-card-title>
+    <mat-card-content>
+      <form #clientMasterSearchForm="ngForm">
+        <div fxLayout="row" fxLayoutGap="30">
+          <mat-form-field appearance="fill">
+            <mat-label>Client Name</mat-label>
+            <input matInput type="text" name="name" />
+          </mat-form-field>
+          <button mat-raised-button color="primary" type="submit">Search</button>
+          <button mat-raised-button color="secondary" type="button">Cancel</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  <div fxLayout="column">
+    <mat-card>
+      <mat-card-content>
+        <div fxLayout="column" fxLayoutGap="20" fxLayoutAlign="start start">
+          <button mat-raised-button color="primary" type="button" (click)="onAddNewClick()">Add New</button>
+          <app-table [tableModel]="model.gridConfig" fxFill></app-table>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

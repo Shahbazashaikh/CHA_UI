@@ -18,7 +18,9 @@ export class NavigationService {
                 subMenus: [
                     { subMenuName: 'Client', subMenuPath: '/master/client' },
                     { subMenuName: 'Supplier', subMenuPath: '/master/supplier' },
-                    { subMenuName: 'Consignee', subMenuPath: '/master/consignee' }
+                    { subMenuName: 'Consignee', subMenuPath: '/master/consignee' },
+                    { subMenuName: 'Buyer', subMenuPath: '/master/buyer' }
+
                 ]
             });
             menus.push({ menuName: 'Import', menuIcon: 'system_update_alt', menuPath: '/import' });

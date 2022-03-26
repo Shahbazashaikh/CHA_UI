@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SupplierMasterComponent } from './supplier-master.component';
+import { ClientMasterComponent } from './client-master.component';
 
-describe('SupplierMasterComponent', () => {
-  let component: SupplierMasterComponent;
-  let fixture: ComponentFixture<SupplierMasterComponent>;
+describe('ClientMasterComponent', () => {
+  let component: ClientMasterComponent;
+  let fixture: ComponentFixture<ClientMasterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SupplierMasterComponent ]
+      declarations: [ ClientMasterComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SupplierMasterComponent);
+    fixture = TestBed.createComponent(ClientMasterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

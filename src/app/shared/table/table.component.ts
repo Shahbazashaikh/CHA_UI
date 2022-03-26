@@ -1,4 +1,4 @@
-import { Component, OnChanges, SimpleChanges, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { Component, OnChanges, SimpleChanges, Input, Output, EventEmitter } from '@angular/core';
 import { TableModel } from './table.model';
 
 @Component({
@@ -15,11 +15,10 @@ export class TableComponent implements OnChanges {
     @Output() rowEditClick: EventEmitter<any> = new EventEmitter<any>();
     @Output() rowDeleteClick: EventEmitter<any> = new EventEmitter<any>();
 
-    constructor(private changeDetector: ChangeDetectorRef) { }
+    constructor() { }
 
     ngOnChanges(changes: SimpleChanges): void {
-        console.log(this.tableModel);
-        this.changeDetector.markForCheck();
+        
     }
 
     onLazyLoading(event: any) {

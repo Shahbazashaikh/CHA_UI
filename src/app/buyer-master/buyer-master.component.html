@@ -1,0 +1,31 @@
+<div fxLayout="column" fxLayoutGap="20" class="buyer-master">
+  <mat-card>
+    <mat-card-title>
+      Buyer Master
+    </mat-card-title>
+    <mat-card-content>
+      <form #BuyerMasterSearchForm="ngForm">
+        <div fxLayout="row" fxLayoutGap="30">
+          <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput type="text" name="name" />
+          </mat-form-field>
+          <button mat-raised-button color="primary" type="submit" (click)="onSearchClick()">Search</button>
+          <button mat-raised-button color="secondary" type="button" (click)="onCancelClick()">Cancel</button>
+        </div>
+      </form>
+    </mat-card-content>
+
+  </mat-card>
+  <div fxLayout="column">
+    <mat-card>
+      <mat-card-content>
+        <div fxLayout="column" fxLayoutGap="20" fxLayoutAlign="start start">
+          <button mat-raised-button color="primary" type="button" (click)="onAddNewClick()">Add New</button>
+          <app-table [tableModel]="model.gridConfig" (rowEditClick)="onEditRowClick($event)"
+            (rowDeleteClick)="onDeleteRowClick($event)" fxFill></app-table>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

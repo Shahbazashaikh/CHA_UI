@@ -1,26 +1,20 @@
 <div fxLayout="column" fxLayoutGap="20" class="consignee-master">
   <mat-card>
     <mat-card-title>
-      Consignee Master
+      {{model.type}}  Master
     </mat-card-title>
     <mat-card-content>
       <form #consigneeMasterSearchForm="ngForm">
         <div fxLayout="row" fxLayoutGap="30">
           <mat-form-field appearance="fill">
-            <mat-label>Consignee Name</mat-label>
-            <input matInput type="text" name="consigneeName" [(ngModel)]="model.consigneeName" />
-            <mat-error *ngIf="!consigneeMasterSearchForm.valid">
-              Consignee Name is required
-            </mat-error>
+            <mat-label>{{model.type}} Name</mat-label>
+            <input matInput type="text" name="name" [(ngModel)]="model.consigneeName" />
           </mat-form-field>
           <mat-form-field appearance="fill">
             <mat-label>Country</mat-label>
             <mat-select [(value)]="model.country">
               <mat-option *ngFor="let cntry of model.countries" [value]="cntry">{{cntry}}</mat-option>
             </mat-select>
-            <mat-error *ngIf="!consigneeMasterSearchForm.valid">
-              Country is required
-            </mat-error>
           </mat-form-field>
           <button mat-raised-button color="primary" type="submit" (click)="onSearchClick()">Search</button>
           <button mat-raised-button color="secondary" type="button" (click)="onCancelClick()">Cancel</button>

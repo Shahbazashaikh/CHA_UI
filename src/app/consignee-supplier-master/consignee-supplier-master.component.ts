@@ -1,25 +1,32 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { MessageService } from 'primeng/api';
-import { ConsigneeMasterModel, InsertUpdateConsigneeModel } from './consignee-master.model';
-import { ConsigneeMasterService } from './consignee-master.service';
-import { InsertUpdateConsigneeComponent } from './insert-update-consignee/insert-update-consignee.component';
+import { ModalDialogResponse } from '../models';
+import { ConsigneeSupplierMasterModel, InsertUpdateConsigneeSupplierModel } from './consignee-supplier-master.model';
+import { ConsigneeSupplierMasterService } from './consignee-supplier-master.service';
+import { InsertUpdateComponent } from './insert-update/insert-update.component';
 import { ConfirmationModalComponent } from '../shared/confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'app-consignee-master',
-  templateUrl: './consignee-master.component.html',
-  styleUrls: ['./consignee-master.component.scss']
+  templateUrl: './consignee-supplier-master.component.html',
+  styleUrls: ['./consignee-supplier-master.component.scss']
 })
-export class ConsigneeMasterComponent implements OnInit {
-  model: ConsigneeMasterModel = new ConsigneeMasterModel();
+export class ConsigneeSupplierMasterComponent implements OnInit {
+  model: ConsigneeSupplierMasterModel = new ConsigneeSupplierMasterModel();
 
   constructor(public dialog: MatDialog,
-    private consigneeService: ConsigneeMasterService,
-    private messageService: MessageService) { }
+    private consigneeService: ConsigneeSupplierMasterService,
+    private messageService: MessageService,
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.initializeGridConfig();
+    this.activatedRoute.data.subscribe((response: any) => {
+      this.model.type = response.masterName;
+
+      this.initializeGridConfig();
+    });
     this.initializeCountries();
     this.getConsignees();
   }
@@ -35,45 +42,49 @@ export class ConsigneeMasterComponent implements OnInit {
   }
 
   onAddNewClick(): void {
-    const insertUpdateModel: InsertUpdateConsigneeModel = new InsertUpdateConsigneeModel();
+    const insertUpdateModel: InsertUpdateConsigneeSupplierModel = new InsertUpdateConsigneeSupplierModel();
     insertUpdateModel.action = 'Add';
+    insertUpdateModel.type = this.model.type;
     insertUpdateModel.countries = this.model.countries;
-    const dialogRef = this.dialog.open(InsertUpdateConsigneeComponent, {
+    const dialogRef = this.dialog.open(InsertUpdateComponent, {
       height: '565px',
       width: '700px',
       data: insertUpdateModel
     });
 
-    dialogRef.afterClosed().subscribe((result: string) => {
-      if (result == 'Successfully Saved') {
+    dialogRef.afterClosed().subscribe((data: ModalDialogResponse) => {
+      if (data.response) {
         this.messageService.add({ severity: 'success', summary: 'Successfully Saved' });
         this.getConsignees();
+      } else {
+        if (data.errorMessage)
+          this.messageService.add({ severity: 'error', summary: data.errorMessage });
       }
-    }, (error: any) => {
-      this.messageService.add({ severity: 'error', summary: error });
     });
   }
 
-  onEditRowClick(updateConsignee: InsertUpdateConsigneeModel) {
+  onEditRowClick(updateConsignee: InsertUpdateConsigneeSupplierModel) {
     updateConsignee.action = 'Update';
+    updateConsignee.type = this.model.type;
     updateConsignee.countries = this.model.countries;
-    const dialogRef = this.dialog.open(InsertUpdateConsigneeComponent, {
+    const dialogRef = this.dialog.open(InsertUpdateComponent, {
       height: '565px',
       width: '700px',
       data: updateConsignee
     });
 
-    dialogRef.afterClosed().subscribe((result: boolean) => {
-      if (result) {
+    dialogRef.afterClosed().subscribe((data: ModalDialogResponse) => {
+      if (data.response) {
         this.messageService.add({ severity: 'success', summary: 'Successfully Updated' });
         this.getConsignees();
+      } else {
+        if (data.errorMessage)
+          this.messageService.add({ severity: 'error', summary: data.errorMessage });
       }
-    }, (error: any) => {
-      this.messageService.add({ severity: 'error', summary: error });
     });
   }
 
-  onDeleteRowClick(deleteConsignee: InsertUpdateConsigneeModel) {
+  onDeleteRowClick(deleteConsignee: InsertUpdateConsigneeSupplierModel) {
     const dialogRef = this.dialog.open(ConfirmationModalComponent, {
       height: '205px',
       width: '395px'
@@ -92,14 +103,14 @@ export class ConsigneeMasterComponent implements OnInit {
             error: (error: any) => {
               this.messageService.add({ severity: 'error', summary: error });
             }
-          })
+          });
       }
     });
   }
 
   private initializeGridConfig(): void {
     this.model.gridConfig.columns = [
-      { field: 'name', header: 'Consignee', sortable: true },
+      { field: 'name', header: this.model.type, sortable: true },
       { field: 'branchNo', header: 'Branch No.', sortable: true },
       { field: 'address1', header: 'Address', sortable: true },
       { field: 'city', header: 'City', sortable: true },

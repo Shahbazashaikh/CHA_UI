@@ -1,0 +1,51 @@
+<div class="insert-update-buyer" fxLayout="column">
+    <form class="insert-update-form" #buyerMasterInsertUpdateForm="ngForm">
+        <div fxLayout="row" fxLayoutAlign="space-between start">
+            <h5 mat-dialog-title>Buyer Master</h5>
+            <mat-icon (click)="onCloseClick()">close</mat-icon>
+        </div>
+        <div class="divider">
+            <mat-divider></mat-divider>
+        </div>
+        <mat-dialog-content>
+            <div fxLayout="row" fxLayoutGap="30">
+                <mat-form-field appearance="fill" fxFlex="50">
+                    <mat-label>Name</mat-label>
+                    <input matInput type="text" name="name" required required [(ngModel)]="data.name" />
+                    <mat-error *ngIf="!buyerMasterInsertUpdateForm.valid">
+                        Name is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill" fxFlex="50">
+                    <mat-label>Addresss 1</mat-label>
+                    <input matInput type="text" name="Address1" required [(ngModel)]="data.address1" />
+                    <mat-error *ngIf="!buyerMasterInsertUpdateForm.valid">
+                        Address2 is required
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutGap="30">
+                <mat-form-field appearance="fill" fxFlex="50">
+                    <mat-label>Address 2</mat-label>
+                    <input matInput type="text" name="address2" required [(ngModel)]="data.address2" />
+                </mat-form-field>
+                <mat-form-field appearance="fill" fxFlex="50">
+                    <mat-label>Addresss 3</mat-label>
+                    <input matInput type="text" name="address3" [(ngModel)]="data.address3" />
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutGap="30">
+                <mat-form-field appearance="fill" fxFlex="50">
+                    <mat-label>Country</mat-label>
+                    <mat-select [(value)]="data.countryName" required>
+                        <mat-option *ngFor="let cntry of data.countries" [value]="cntry">{{cntry}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <mat-divider></mat-divider>
+        </mat-dialog-content>
+        <mat-dialog-actions align="end">
+            <button type="submit" mat-raised-button color="primary" (click)="onPrimaryButtonClick()">Submit</button>
+        </mat-dialog-actions>
+    </form>
+</div>

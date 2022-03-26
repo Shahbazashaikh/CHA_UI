@@ -1,9 +1,9 @@
-export interface GetConsigneeRequestModel {
+export interface GetRequestModel {
     companyName: string;
     countryCode: string;
 }
 
-export interface ConsigneeResponseModel {
+export interface ConsigneeSupplierResponseModel {
     id: number;
     name: string;
     branchNo: string;
@@ -17,7 +17,7 @@ export interface ConsigneeResponseModel {
     remarks: string;
 }
 
-export interface ConsigneeRequestModel {
+export interface ConsigneeSupplierRequestModel {
     id: number;
     name: string;
     branchNo: string;

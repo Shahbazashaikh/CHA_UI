@@ -26,14 +26,28 @@ const routes: Routes = [
   },
   {
     path: 'master/consignee',
-    loadChildren: () => import('./consignee-master/consignee-master.module').then(m => m.ConsigneeMasterModule),
+    loadChildren: () => import('./consignee-supplier-master/consignee-supplier-master.module').then(m => m.ConsigneeSupplierMasterModule),
+    data: { masterName: 'Consignee' },
     canActivate: [AuthGuardService]
   },
   {
     path: 'master/supplier',
-    loadChildren: () => import('./supplier-master/supplier-master.module').then(m => m.SupplierMasterModule),
+    loadChildren: () => import('./consignee-supplier-master/consignee-supplier-master.module').then(m => m.ConsigneeSupplierMasterModule),
+    data: { masterName: 'Supplier' },
     canActivate: [AuthGuardService]
-  }
+  },
+  {
+    path: 'master/buyer',
+    loadChildren: () => import('./buyer-master/buyer-master.module').then(m => m.BuyerMasterModule),
+    data: { masterName: 'Buyer' },
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'master/client',
+    loadChildren: () => import('./client-master/client-master.module').then(m => m.ClientMasterModule),
+    data: { masterName: 'Client' },
+    canActivate: [AuthGuardService]
+  },
 ];
 
 @NgModule({

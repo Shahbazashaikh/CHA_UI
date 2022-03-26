@@ -1,0 +1,179 @@
+<div fxLayout="column" fxLayoutGap="20" class="insert-update-client">
+    <mat-card>
+        <mat-card-title>
+            Client Details
+        </mat-card-title>
+        <mat-card-content>
+            <form #ClientDetailsForm="ngForm">
+                <div fxLayout="row" fxLayoutGap="20" class="row">
+                    <mat-form-field appearance="fill" style="width: 150px;">
+                        <mat-label>IEC No</mat-label>
+                        <input matInput type="text" maxlength="10" minlength="10" name="iecNo" required
+                            [(ngModel)]="model.iecNo" />
+                        <mat-error>
+                            IEC No is required
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" style="width: 150px;">
+                        <mat-label>Type</mat-label>
+                        <mat-select required name="type" [(ngModel)]="model.type">
+                            <mat-option mat-option *ngFor="let type of model.clienttypes" [value]="type.key">
+                                {{type.value}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error>
+                            Type is required
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" style="width: 300px;">
+                        <mat-label>Name</mat-label>
+                        <input matInput type="text" name="Name" maxlength="50" required [(ngModel)]="model.name" />
+                        <mat-error>
+                            Name is required
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" style="width: 150px;">
+                        <mat-label>Pan No</mat-label>
+                        <input matInput type="text" maxlength="15" minlength="15" name="panNo" required
+                            [(ngModel)]="model.panNo" />
+                        <mat-error>
+                            Pan No is required
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" style="width: 150px;">
+                        <mat-label>Phone No</mat-label>
+                        <input matInput type="text" name="phoneNo" maxlength="13" [(ngModel)]="model.phoneNo" />
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutGap="20" class="row">
+                    <mat-form-field appearance="fill" style="width: 150px;">
+                        <mat-label>Fax</mat-label>
+                        <input matInput type="text" name="fax" maxlength="500" [(ngModel)]="model.fax" />
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" style="width: 150px;">
+                        <mat-label>EMail</mat-label>
+                        <input matInput type="text" name="email" maxlength="50" [(ngModel)]="model.email" />
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" style="width: 300px;">
+                        <mat-label>Contact Person</mat-label>
+                        <input matInput type="text" name="ContactPerson" maxlength="100"
+                            [(ngModel)]="model.contactPerson" />
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" style="width: 150px;">
+                        <mat-label>Bin No</mat-label>
+                        <input matInput type="text" name="binNo" [(ngModel)]="model.binNo" />
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" style="width: 150px;">
+                        <mat-label>TIN No</mat-label>
+                        <input matInput type="text" name="tinNo" [(ngModel)]="model.tinNo" />
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutGap="20" class="row">
+                    <mat-form-field appearance="fill" style="width: 150px;">
+                        <mat-label>Reg No</mat-label>
+                        <input matInput type="text" name="regNo" [(ngModel)]="model.regNo" />
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" style="width: 150px;">
+                        <mat-label>Type Of Exp</mat-label>
+                        <input matInput type="text" name="typeofExp" [(ngModel)]="model.typeofExp" />
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" style="width: 300px;">
+                        <mat-label>EXP GSTN Type</mat-label>
+                        <mat-select [(value)]="model.expgstnType">
+                            <mat-option *ngFor="let expgstntType of model.exportGSTNTypes" [value]="expgstntType.key">
+                                {{expgstntType.value}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" style="width: 320px;">
+                        <mat-label>IMP GSTN Type</mat-label>
+                        <mat-select [(value)]="model.impgstnType">
+                            <mat-option *ngFor="let impgstntType of model.importGSTNTypes" [value]="impgstntType.key">
+                                {{impgstntType.value}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="client-address-title">
+                    Client Address
+                </div>
+                <ng-container *ngFor="let clientAddress of model.addresses;let index = index">
+                    <div fxLayout="row" fxLayoutGap="20" class="row">
+                        <mat-form-field appearance="fill" style="width: 320px;">
+                            <mat-label>Address 1</mat-label>
+                            <input matInput matInput maxlength="35" type="text" name="adress1_{{index}}"
+                                [(ngModel)]="clientAddress.address1" required />
+                            <mat-error>
+                                Address1 is required
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" style="width: 300px;">
+                            <mat-label>Address 2</mat-label>
+                            <input matInput maxlength="35" type="text" name="address2_{{index}}"
+                                [(ngModel)]="clientAddress.address2" />
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" style="width: 320px;">
+                            <mat-label>City</mat-label>
+                            <mat-select [(value)]="clientAddress.city">
+                                <mat-option *ngFor="let city of model.cities" [value]="city.key">
+                                    {{city.value}}</mat-option>
+                            </mat-select>
+                            <mat-error>
+                                City is required
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout="row" fxLayoutGap="20" class="row">
+                        <mat-form-field appearance="fill" style="width: 320px;">
+                            <mat-label>State Name</mat-label>
+                            <mat-select required name="stateName" [(ngModel)]="clientAddress.stateName">
+                                <mat-option *ngFor="let stateName of model.states" [value]="stateName.key">
+                                    {{stateName.value}}</mat-option>
+                            </mat-select>
+                            <mat-error>
+                                State Name is required
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" style="width: 110px;">
+                            <mat-label>State Code</mat-label>
+                            <input matInput type="text" maxlength="2" name="stateCode_{{index}}"
+                                [(ngModel)]="clientAddress.stateCode" required />
+                            <mat-error>
+                                State Code is required
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" style="width: 170px;">
+                            <mat-label>Branch No</mat-label>
+                            <input matInput type="text" maxlength="3" name="branchNo_{{index}}"
+                                [(ngModel)]="clientAddress.branchNo" required />
+                            <mat-error>
+                                Branch No is required
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" style="width: 150px;">
+                            <mat-label>District</mat-label>
+                            <input matInput maxlength="35" type="text" name="district_{{index}}"
+                                [(ngModel)]="clientAddress.district" />
+
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" style="width: 150px;">
+                            <mat-label>PIN Code</mat-label>
+                            <input matInput minlength="6" maxlength="6" type="text" name="pinCode_{{index}}"
+                                [(ngModel)]="clientAddress.pinCode" required />
+                            <mat-error>
+                                PIN Code is required
+                            </mat-error>
+                        </mat-form-field>
+                        <div fxLayout="row" fxLayoutGap="10" class="add-delete-icons">
+                            <mat-icon color="primary" title="Add New Address" (click)="onAddRowClick()">add
+                            </mat-icon>
+                            <mat-icon color="red" title="Delete Address" (click)="onDeleteRowClick(index)"
+                                *ngIf="model.addresses.length > 1">delete</mat-icon>
+                        </div>
+                    </div>
+                </ng-container>
+                <div>
+                    <button mat-raised-button color="primary" type="submit" (click)="onSubmitClick()">Submit</button>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>
