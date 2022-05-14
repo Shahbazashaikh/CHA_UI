@@ -11,50 +11,98 @@
     [currentPageReportTemplate]="tableModel.currentPageReportTemplate"
     [rowsPerPageOptions]="tableModel.rowsPerPageOptions" (onLazyLoad)="onLazyLoading($event)"
     (selectionChange)="onSelectionChange($event)" (selectAllChange)="onSelectAllChange($event)">
-    <!-- <ng-template pTemplate="caption" *ngIf="tableModel.export">
-        <div class="flex">
-            <button type="button" pButton pRipple icon="pi pi-file" (click)="onExportClick('CSV')" class="mr-2"
-                pTooltip="CSV" tooltipPosition="bottom"></button>
-            <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="onExportClick('Excel')"
-                class="p-button-success mr-2" pTooltip="XLS" tooltipPosition="bottom"></button>
-            <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="onExportClick('PDF')"
-                class="p-button-warning mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>
-        </div>
-    </ng-template> -->
     <ng-template pTemplate="header" let-columns>
         <tr>
+            <th *ngIf="expandable" style="width: 3rem"></th>
             <ng-container *ngFor="let col of columns">
                 <th [pSortableColumn]="col.sortable == true ? col.field : ''" pFrozenColumn [frozen]="col.isFrozen">
                     {{col.header}} <p-sortIcon *ngIf="col.sortable" field="col.field"></p-sortIcon>
                 </th>
             </ng-container>
         </tr>
-        <!-- <tr *ngIf="tableModel.filter">
-            <ng-template [ngSwitch]="col.filterType">
-                <th *ngIf="tableModel.isSelection">
-                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                </th>
-                <th *ngSwitchCase="'text'">
-                    <p-columnFilter type="text" [field]="col.field"></p-columnFilter>
-                </th>
-            </ng-template>
-        </tr> -->
     </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <ng-template pTemplate="body" let-rowData let-columns="columns" let-expanded="expanded">
         <tr>
+            <td *ngIf="expandable">
+                <button type="button" pButton pRipple [pRowToggler]="rowData"
+                    class="p-button-text p-button-rounded p-button-plain"
+                    [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+            </td>
             <ng-container *ngFor="let col of columns">
                 <td *ngIf="tableModel.isSelection">
                     <!-- <p-tableCheckbox [value]="rowData"></p-tableCheckbox> -->
                 </td>
                 <td *ngIf="col.isEditAllowed || col.isDeleteAllowed">
-                    <mat-icon *ngIf="col.isEditAllowed" color="primary" (click)="onRowEditClick(rowData)">edit</mat-icon>
-                    <mat-icon *ngIf="col.isDeleteAllowed" color="red" (click)="onRowDeleteClick(rowData)">delete</mat-icon>
+                    <mat-icon *ngIf="col.isEditAllowed" color="primary" (click)="onRowEditClick(rowData)">edit
+                    </mat-icon>
+                    <mat-icon *ngIf="col.isDeleteAllowed" color="red" (click)="onRowDeleteClick(rowData)">delete
+                    </mat-icon>
                 </td>
                 <td pFrozenColumn [frozen]="col.isFrozen" *ngIf="!(col.isEditAllowed || col.isDeleteAllowed)">
                     {{rowData[col.field]}}</td>
             </ng-container>
         </tr>
     </ng-template>
+    <ng-container *ngIf="expandable">
+        <ng-template pTemplate="rowexpansion">
+            <tr>
+                <p-table #expandableTable styleClass="p-datatable-gridlines" [columns]="expandableTableModel.columns"
+                    [value]="expandableTableModel.data" [sortMode]="expandableTableModel.sortMode"
+                    [lazy]="expandableTableModel.lazy" [responsiveLayout]="expandableTableModel.responsiveLayout"
+                    [dataKey]="expandableTableModel.dataKey" [selection]="expandableTableModel.selectedData"
+                    [selectAll]="expandableTableModel.selectAll" [paginator]="expandableTableModel.paginator"
+                    [rows]="expandableTableModel.rows" [totalRecords]="expandableTableModel.totalRecords"
+                    [loading]="expandableTableModel.loading"
+                    [globalFilterFields]="expandableTableModel.globalFilterFields"
+                    [virtualScroll]="expandableTableModel.virtualScroll"
+                    [virtualRowHeight]="expandableTableModel.virtualRowHeight"
+                    [scrollable]="expandableTableModel.scrollable" [scrollHeight]="expandableTableModel.scrollHeight"
+                    [scrollDirection]="expandableTableModel.scrollDirection"
+                    [resizableColumns]="expandableTableModel.resizableColumns"
+                    [reorderableColumns]="expandableTableModel.reorderableColumns" [exportHeader]="'customExportHeader'"
+                    [showCurrentPageReport]="expandableTableModel.showCurrentPageReport"
+                    [currentPageReportTemplate]="expandableTableModel.currentPageReportTemplate"
+                    [rowsPerPageOptions]="expandableTableModel.rowsPerPageOptions" (onLazyLoad)="onLazyLoading($event)"
+                    (selectionChange)="onSelectionChange($event)" (selectAllChange)="onSelectAllChange($event)">
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <ng-container *ngFor="let col of columns">
+                                <th [pSortableColumn]="col.sortable == true ? col.field : ''" pFrozenColumn [frozen]="col.isFrozen">
+                                    {{col.header}} <p-sortIcon *ngIf="col.sortable" field="col.field"></p-sortIcon>
+                                </th>
+                            </ng-container>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-columns="columns">
+                        <tr>
+                            <ng-container *ngFor="let col of columns">
+                                <td *ngIf="expandableTableModel.isSelection">
+                                    <!-- <p-tableCheckbox [value]="rowData"></p-tableCheckbox> -->
+                                </td>
+                                <td *ngIf="col.isEditAllowed || col.isDeleteAllowed">
+                                    <mat-icon *ngIf="col.isEditAllowed" color="primary" (click)="onRowEditClick(rowData)">edit
+                                    </mat-icon>
+                                    <mat-icon *ngIf="col.isDeleteAllowed" color="red" (click)="onRowDeleteClick(rowData)">delete
+                                    </mat-icon>
+                                </td>
+                                <td pFrozenColumn [frozen]="col.isFrozen" *ngIf="!(col.isEditAllowed || col.isDeleteAllowed)">
+                                    {{rowData[col.field]}}</td>
+                            </ng-container>
+                            <ng-container *ngIf="expandableTableModel.emptyMessage">
+                                <ng-template pTemplate="emptymessage" let-columns>
+                                    <tr>
+                                        <td [attr.colspan]="columns.length">
+                                            {{expandableTableModel.emptyMessage}}
+                                        </td>
+                                    </tr>
+                                </ng-template>
+                            </ng-container>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </tr>
+        </ng-template>
+    </ng-container>
     <ng-container *ngIf="tableModel.emptyMessage">
         <ng-template pTemplate="emptymessage" let-columns>
             <tr>

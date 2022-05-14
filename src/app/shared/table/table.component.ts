@@ -8,6 +8,8 @@ import { TableModel } from './table.model';
 })
 export class TableComponent implements OnChanges {
     @Input() tableModel: TableModel;
+    @Input() expandable: boolean;
+    @Input() expandableTableModel: TableModel;
     @Output() onLazyLoad: EventEmitter<any> = new EventEmitter<any>();
     @Output() selectionChange: EventEmitter<any> = new EventEmitter<any>();
     @Output() selectAllChange: EventEmitter<any> = new EventEmitter<any>();
@@ -18,7 +20,7 @@ export class TableComponent implements OnChanges {
     constructor() { }
 
     ngOnChanges(changes: SimpleChanges): void {
-        
+
     }
 
     onLazyLoading(event: any) {
