@@ -15,7 +15,8 @@ export interface ClientRequestModel {
     regNo: string;
     typeofExp: string;
     addresses: ClientAddressRequestModel[];
-    UserId: number;
+    documents: ClientDocumentMasterRequest[];
+    userId: number;
     action: string;
 }
 
@@ -30,5 +31,16 @@ export interface ClientAddressRequestModel {
     stateCode: string;
     district: string;
     pinCode: string;
+    userId?: number;
+}
+
+export interface ClientDocumentMasterRequest {
+    documentId?: number;
+    clientId?: number;
+    clientName?: string;
+    documentName: string;
+    documentPath?: string;
+    documentType: number;
+    file: File;
     userId?: number;
 }

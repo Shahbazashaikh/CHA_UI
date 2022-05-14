@@ -21,10 +21,10 @@ export class HttpService {
         });
     }
 
-    post<T>(url: string, body: any, showLoader: boolean = true): Observable<T> {
+    post<T>(url: string, body: any, isFormData: boolean = false, showLoader: boolean = true): Observable<T> {
         return new Observable(observer => {
             this.showLoader(showLoader);
-            this.http.post<T>(url, body, { headers: this.getHttpHeaders(), responseType: 'json' })
+            this.http.post<T>(url, body, { headers: this.getHttpHeaders(isFormData), responseType: 'json' })
                 .subscribe({
                     next: (value) => this.handleNextEventOfSubscription<T>(observer, value),
                     error: (error) => this.handleErrorEventOfSubscription<T>(observer, error),
@@ -33,10 +33,10 @@ export class HttpService {
         });
     }
 
-    put<T>(url: string, body: any, showLoader: boolean = true): Observable<T> {
+    put<T>(url: string, body: any, isFormData: boolean = false, showLoader: boolean = true): Observable<T> {
         return new Observable(observer => {
             this.showLoader(showLoader);
-            this.http.put<T>(url, body, { headers: this.getHttpHeaders(), responseType: 'json' })
+            this.http.put<T>(url, body, { headers: this.getHttpHeaders(isFormData), responseType: 'json' })
                 .subscribe({
                     next: (value) => this.handleNextEventOfSubscription<T>(observer, value),
                     error: (error) => this.handleErrorEventOfSubscription<T>(observer, error),
@@ -77,10 +77,12 @@ export class HttpService {
         }
     }
 
-    private getHttpHeaders(): HttpHeaders {
-        return new HttpHeaders({
-            'Content-Type': 'application/json'
-        });
+    private getHttpHeaders(isFormData: boolean = false): HttpHeaders {
+        const header: HttpHeaders = new HttpHeaders();
+        header.append('Accept', 'application/json');
+        if (isFormData == false)
+            header.append('Content-Type', 'application/json');
+        return header;
     }
 
     private getHttpParams(data: any): HttpParams {

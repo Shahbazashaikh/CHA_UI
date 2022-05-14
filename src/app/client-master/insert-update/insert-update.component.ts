@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ClientMaster, ClientAddressMaster } from '../client-master.model';
+import { ClientMaster, ClientAddressMaster, ClientDocumentMaster } from '../client-master.model';
 import { ClientMasterService } from '../client-master.service';
 import { MessageService } from 'primeng/api';
 
@@ -22,7 +22,9 @@ export class InsertUpdateComponent implements OnInit {
     this.initImpGSTNType();
     this.initCity();
     this.initState();
+    this.initDocumentTypes();
     this.addDefaultAddressRow();
+    this.addDefaultDocumnetRow();
   }
 
   onSubmitClick() {
@@ -37,6 +39,19 @@ export class InsertUpdateComponent implements OnInit {
 
   onDeleteRowClick(index: number) {
     this.model.addresses.splice(index, 1);
+  }
+
+  onAddDocumentClick() {
+    this.model.documents.push(this.addNewDocumnetDetailsRow())
+  }
+
+  onDeleteDocumentClick(index: number) {
+    this.model.documents.splice(index, 1);
+  }
+
+  onDocumentChange(event: any, clientDocument: ClientDocumentMaster): void {
+    clientDocument.documentName = event.target.files[0].name;
+    clientDocument.file = event.target.files[0];
   }
 
   private saveClientMaster(): void {
@@ -102,8 +117,19 @@ export class InsertUpdateComponent implements OnInit {
     ];
   }
 
+  private initDocumentTypes(): void {
+    this.model.documentTypes = [
+      { key: '1', value: 'Aadhar Card' },
+      { key: '2', value: 'PAN Card' }
+    ];
+  }
+
   private addDefaultAddressRow() {
     this.model.addresses.push(this.addNewAddressRow());
+  }
+
+  private addDefaultDocumnetRow() {
+    this.model.documents.push(this.addNewDocumnetDetailsRow());
   }
 
   private addNewAddressRow(): ClientAddressMaster {
@@ -116,6 +142,13 @@ export class InsertUpdateComponent implements OnInit {
       stateCode: '',
       district: '',
       pinCode: ''
+    };
+  }
+  private addNewDocumnetDetailsRow(): ClientDocumentMaster {
+    return {
+      documentName: 'Selected file name',
+      documentType: 0,
+      file: {}
     };
   }
 }

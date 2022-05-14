@@ -1,3 +1,5 @@
+@import '../../../saas/abstracts/variables';
+
 .insert-update-client {
     .add-delete-icons {
         justify-content: center;
@@ -8,7 +10,26 @@
         font-weight: 500;
         margin-bottom: 8px;
     }
+    .client-document-title {
+        font-size: 24px;
+        font-weight: 500;
+        margin-bottom: 8px;
+    }
     .row {
         margin-bottom: 5px;
+    }
+
+    .button-height {
+        height: 43px;
+    }
+
+    .submit-button {
+        margin-right: 30px;
+    }
+
+    .file-name-chip {
+        width: 300px;
+        height: 45px;
+        border-radius: 5px;
     }
 }

@@ -170,7 +170,44 @@
                         </div>
                     </div>
                 </ng-container>
-                <div>
+
+                <div class="client-document-title">
+                    Client Document
+                </div>
+                <ng-container *ngFor="let clientDocument of model.documents;let index = index">
+                    <div fxLayout="row" fxLayoutGap="20" class="row">
+                        <mat-form-field appearance="fill" style="width: 320px;">
+                            <mat-label>Document Type</mat-label>
+                            <mat-select required name="documentType_{{index}}" [(ngModel)]="clientDocument.documentType">
+                                <mat-option *ngFor="let documentType of model.documentTypes" [value]="documentType.key">
+                                    {{documentType.value}}</mat-option>
+                            </mat-select>
+                            <mat-error>
+                                Document Type is required
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-chip-list #chipList>
+                            <mat-chip disabled="true" class="file-name-chip">{{clientDocument.documentName}}</mat-chip>
+                        </mat-chip-list>
+                        <input #addDocument type="file" accept=".pdf,.jpg,.png,.jpeg" hidden="true"
+                            (change)="onDocumentChange($event, clientDocument)" />
+                        <button mat-raised-button color="primary" class="button-height" type="button"
+                            (click)="addDocument.click()">Choose a
+                            file</button>
+                        <div fxLayout="row" fxLayoutGap="10" class="add-delete-icons">
+                            <mat-icon color="primary" title="Add New Document For Upload"
+                                (click)="onAddDocumentClick()">add
+                            </mat-icon>
+                            <mat-icon color="red" title="Delete Selected Document"
+                                (click)="onDeleteDocumentClick(index)" *ngIf="model.documents.length > 1">delete
+                            </mat-icon>
+                        </div>
+                    </div>
+                </ng-container>
+                <div fxLayout="row" fxLayoutGap="20" class="row">
+                    <button mat-raised-button color="primary" class="button-height" type="button">Upload</button>
+                </div>
+                <div fxLayout="column" fxLayoutAlign="end end" class="submit-button">
                     <button mat-raised-button color="primary" type="submit" (click)="onSubmitClick()">Submit</button>
                 </div>
             </form>

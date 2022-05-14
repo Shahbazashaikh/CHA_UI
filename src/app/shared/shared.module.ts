@@ -19,7 +19,7 @@ import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { TableComponent } from './table/table.component';
 import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
-import { MatStepperModule } from '@angular/material/stepper';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
     imports: [
@@ -41,7 +41,7 @@ import { MatStepperModule } from '@angular/material/stepper';
         MatDialogModule,
         TableModule,
         ToastModule,
-        MatStepperModule
+        MatChipsModule
     ],
     declarations: [
         ConfirmationModalComponent,
@@ -67,7 +67,7 @@ import { MatStepperModule } from '@angular/material/stepper';
         TableModule,
         ToastModule,
         TableComponent,
-        MatStepperModule
+        MatChipsModule
     ],
     entryComponents: [
         ConfirmationModalComponent

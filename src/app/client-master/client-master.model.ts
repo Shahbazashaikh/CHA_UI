@@ -30,13 +30,14 @@ export class ClientMaster {
     typeofExp: string;
     addresses: ClientAddressMaster[] = [];
     documents: ClientDocumentMaster[] = [];
-    UserId: number;
+    userId: number;
     action: string;
     exportGSTNTypes: DropDownData[] = [];
     importGSTNTypes: DropDownData[] = [];
     clienttypes: DropDownData[] = [];
     cities: DropDownData[] = [];
     states: DropDownData[] = [];
+    documentTypes: DropDownData[] = [];
 }
 
 export class ClientAddressMaster {
@@ -54,9 +55,10 @@ export class ClientAddressMaster {
 }
 
 export class ClientDocumentMaster {
-    documentId: number;
-    clientId: number;
+    documentId?: number;
+    clientId?: number;
     documentName: string;
     documentType: number;
-    userId: number;
+    file: any;
+    userId?: number;
 }
